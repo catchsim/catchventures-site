@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+  <line x1="50" y1="50" x2="50.00" y2="4.00" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="82.53" y2="17.47" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="96.00" y2="50.00" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="82.53" y2="82.53" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="50.00" y2="96.00" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="17.47" y2="82.53" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="4.00" y2="50.00" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="17.47" y2="17.47" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 50.00,34.00 Q 56.86,33.44 61.31,38.69 Q 66.56,43.14 66.00,50.00 Q 66.56,56.86 61.31,61.31 Q 56.86,66.56 50.00,66.00 Q 43.14,66.56 38.69,61.31 Q 33.44,56.86 34.00,50.00 Q 33.44,43.14 38.69,38.69 Q 43.14,33.44 50.00,34.00 Z" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 50.00,22.00 Q 62.00,21.03 69.80,30.20 Q 78.97,38.00 78.00,50.00 Q 78.97,62.00 69.80,69.80 Q 62.00,78.97 50.00,78.00 Q 38.00,78.97 30.20,69.80 Q 21.03,62.00 22.00,50.00 Q 21.03,38.00 30.20,30.20 Q 38.00,21.03 50.00,22.00 Z" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 50.00,8.00 Q 68.00,6.54 79.70,20.30 Q 93.46,32.00 92.00,50.00 Q 93.46,68.00 79.70,79.70 Q 68.00,93.46 50.00,92.00 Q 32.00,93.46 20.30,79.70 Q 6.54,68.00 8.00,50.00 Q 6.54,32.00 20.30,20.30 Q 32.00,6.54 50.00,8.00 Z" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

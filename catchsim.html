@@ -18,24 +18,155 @@
 <link rel="author" href="https://www.perplexity.ai/computer">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catch Ventures — AI Platforms for Cybersecurity & Financial Intelligence</title>
-<meta name="description" content="Catch Ventures builds AI platforms that help organizations and investors catch risk early and opportunities sooner. CatchEquities is our financial intelligence SaaS. CatchSim is an independent cybersecurity research initiative.">
-<meta property="og:title" content="Catch Ventures — Catch Risk Early. Catch Opportunity Sooner.">
-<meta property="og:description" content="AI platforms for cybersecurity and financial intelligence. Building high-trust software that helps organizations identify what matters before others do.">
+<title>CatchSim — Cybersecurity Simulation & Resilience Research Platform</title>
+<meta name="description" content="CatchSim is a cybersecurity simulation platform for validating detection, uncovering gaps, and strengthening resilience through controlled attack simulation.">
+<meta property="og:title" content="CatchSim — Validate Detection. Uncover Gaps. Strengthen Resilience.">
+<meta property="og:description" content="Cybersecurity simulation platform for validating detection capabilities, surfacing blind spots, and reducing risk through intelligent simulation.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://catchventures.ca">
+<meta property="og:url" content="https://catchsim.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
+<style>
+  /* CatchSim accent overrides — use blue as the signal color */
+  .sim-accent { color: var(--color-blue); }
+
+  .sim-feature-tile {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    transition: border-color var(--transition-interactive), box-shadow var(--transition-interactive), transform var(--transition-interactive);
+  }
+
+  .sim-feature-tile:hover {
+    border-color: var(--color-blue);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .sim-feature-tile__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--color-blue-highlight);
+    color: var(--color-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-5);
+  }
+
+  .sim-feature-tile__title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-3);
+  }
+
+  .sim-feature-tile__body {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: none;
+  }
+
+  .sim-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .sim-process-step {
+    display: flex;
+    gap: var(--space-5);
+    align-items: flex-start;
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-interactive), box-shadow var(--transition-interactive);
+  }
+
+  .sim-process-step:hover {
+    border-color: var(--color-blue);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sim-process-step__num {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    color: var(--color-blue);
+    opacity: 0.3;
+    line-height: 1;
+    min-width: 40px;
+    flex-shrink: 0;
+  }
+
+  .sim-process-step__title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .sim-process-step__body {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    max-width: none;
+  }
+
+  .research-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--color-blue-highlight);
+    color: var(--color-blue);
+    margin-bottom: var(--space-6);
+  }
+
+  .sim-contact-band {
+    background: var(--color-surface-offset);
+    padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sim-contact-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 80% at 50% 50%, 
+      color-mix(in oklab, var(--color-blue) 6%, transparent),
+      transparent);
+  }
+
+  .sim-contact-band__inner {
+    position: relative;
+    z-index: 1;
+  }
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Catch Ventures",
-  "url": "https://catchventures.ca",
-  "description": "AI platforms for cybersecurity and financial intelligence",
+  "@type": "ResearchProject",
+  "name": "CatchSim",
+  "description": "Cybersecurity simulation platform for detection validation, gap analysis, and resilience testing",
+  "url": "https://catchsim.com",
   "creator": {"@type": "SoftwareApplication", "name": "Perplexity Computer", "url": "https://www.perplexity.ai/computer"}
 }
 </script>
@@ -494,7 +625,7 @@
   <div class="container">
     <div class="nav__inner">
       <a href="./index.html" class="nav__logo" aria-label="Catch Ventures home">
-        <svg width="32" height="32" viewBox="0 0 100 100" fill="none" aria-hidden="true" style="color:#29b6d4">
+        <span class="nav__webmark" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 100 100" fill="none" style="color:var(--color-primary)">
   <line x1="50.0" y1="50.0" x2="50.00" y2="4.00" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/>
   <line x1="50.0" y1="50.0" x2="82.53" y2="17.47" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/>
   <line x1="50.0" y1="50.0" x2="96.00" y2="50.00" stroke="currentColor" stroke-width="4.2" stroke-linecap="round"/>
@@ -527,364 +658,389 @@
   <path d="M22.42,77.58 Q21.17,61.94 11.00,50.00" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/>
   <path d="M11.00,50.00 Q21.17,38.06 22.42,22.42" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/>
   <path d="M22.42,22.42 Q38.06,21.17 50.00,11.00" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/>
-</svg>
+</svg></span>
         <span class="nav__logo-text">Catch Ventures</span>
       </a>
 
       <ul class="nav__links" role="list">
-        <li><a href="./index.html" class="active">Home</a></li>
+        <li><a href="./index.html">Home</a></li>
         <li><a href="./catchequities.html">CatchEquities</a></li>
-        <li><a href="./catchsim.html">CatchSim</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="./catchsim.html" class="active">CatchSim</a></li>
+        <li><a href="./index.html#about">About</a></li>
+        <li><a href="./index.html#contact">Contact</a></li>
       </ul>
       <button class="nav__mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
-
-    <!-- Mobile menu -->
     <div class="nav__mobile-menu" id="mobileMenu" role="navigation">
       <a href="./index.html">Home</a>
       <a href="./catchequities.html">CatchEquities</a>
       <a href="./catchsim.html">CatchSim</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="./index.html#about">About</a>
+      <a href="./index.html#contact">Contact</a>
     </div>
   </div>
 </nav>
 
-<!-- Hero -->
 <main>
-  <section class="hero" id="home">
-    <!-- Decorative grid -->
-    <svg class="signal-grid" viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="0.5"/>
-        </pattern>
-      </defs>
-      <rect width="520" height="400" fill="url(#grid)" style="color: var(--color-primary)"/>
-      <!-- Signal lines -->
-      <polyline points="0,280 60,260 120,200 180,220 240,140 300,160 360,80 420,100 520,40" fill="none" stroke="var(--color-primary)" stroke-width="1.5" opacity="0.6"/>
-      <polyline points="0,320 80,310 160,290 240,270 300,240 380,200 460,190 520,180" fill="none" stroke="var(--color-blue)" stroke-width="1" opacity="0.4"/>
-      <!-- Signal dots -->
-      <circle cx="240" cy="140" r="4" fill="var(--color-primary)" opacity="0.8"/>
-      <circle cx="360" cy="80" r="4" fill="var(--color-primary)" opacity="0.8"/>
-      <circle cx="120" cy="200" r="3" fill="var(--color-primary)" opacity="0.5"/>
-    </svg>
-
+  <!-- Page Hero -->
+  <section class="page-hero page-hero--blue">
     <div class="container">
-      <div class="hero__content">
-        <div class="hero__eyebrow">AI Platforms for Risk &amp; Intelligence</div>
-        <h1 class="hero__title">
-          Build high-trust software.<br>
-          <span class="accent">Catch what matters first.</span>
+      <div class="page-hero__content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="./index.html">Catch Ventures</a>
+          <span class="breadcrumb__sep" aria-hidden="true">›</span>
+          <span aria-current="page">CatchSim</span>
+        </nav>
+        <div class="research-badge">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+          Research Platform
+        </div>
+        <h1 class="hero__title" style="color: var(--color-text);">
+          Catch<span style="font-weight:300">Sim</span>
         </h1>
-        <p class="hero__subtitle">
-          Catch Ventures develops AI platforms for cybersecurity and financial intelligence — helping organizations and investors identify risk early and seize opportunities before others do.
+        <p class="hero__subtitle" style="font-size: var(--text-base); max-width: 560px;">
+          Cybersecurity simulation platform for validating detection, uncovering blind spots, and strengthening organizational resilience through controlled, intelligent simulation.
         </p>
         <div class="hero__cta">
-          <a href="./catchequities.html" class="btn btn--primary">
-            Explore CatchEquities
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a href="https://catchsim.com" target="_blank" rel="noopener noreferrer" class="btn btn--primary" style="background: var(--color-blue); box-shadow: none;">
+            Visit catchsim.com
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
-          <a href="./catchsim.html" class="btn btn--ghost">
-            Discover CatchSim
-          </a>
+          <a href="./index.html#contact" class="btn btn--ghost">Research Inquiries</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Ticker band -->
-  <div class="ticker-band" aria-hidden="true">
-    <div class="ticker-track">
-      <span class="ticker-item"><span class="dot"></span>Financial Intelligence</span>
-      <span class="ticker-item"><span class="dot"></span>Cybersecurity Simulation</span>
-      <span class="ticker-item"><span class="dot"></span>AI-Driven Signal Detection</span>
-      <span class="ticker-item"><span class="dot"></span>Risk Identification</span>
-      <span class="ticker-item"><span class="dot"></span>Market Anomaly Detection</span>
-      <span class="ticker-item"><span class="dot"></span>Resilience Validation</span>
-      <span class="ticker-item"><span class="dot"></span>High-Trust Software</span>
-      <span class="ticker-item"><span class="dot"></span>Catch Risk Early</span>
-      <!-- Duplicate for seamless loop -->
-      <span class="ticker-item"><span class="dot"></span>Financial Intelligence</span>
-      <span class="ticker-item"><span class="dot"></span>Cybersecurity Simulation</span>
-      <span class="ticker-item"><span class="dot"></span>AI-Driven Signal Detection</span>
-      <span class="ticker-item"><span class="dot"></span>Risk Identification</span>
-      <span class="ticker-item"><span class="dot"></span>Market Anomaly Detection</span>
-      <span class="ticker-item"><span class="dot"></span>Resilience Validation</span>
-      <span class="ticker-item"><span class="dot"></span>High-Trust Software</span>
-      <span class="ticker-item"><span class="dot"></span>Catch Risk Early</span>
+  <!-- Mission Statement -->
+  <div class="vision-band" style="--color-primary: var(--color-blue);">
+    <div class="container">
+      <div class="vision-band__inner">
+        <blockquote class="vision-band__quote">
+          "You cannot defend what<br>you haven't <span class="highlight" style="color: var(--color-blue);">tested.</span>"
+        </blockquote>
+        <p class="vision-band__sub">CatchSim exists to make security testing rigorous, repeatable, and insight-driven — before an adversary does it for you.</p>
+      </div>
     </div>
   </div>
 
-  <!-- Products -->
-  <section class="section" id="products">
+  <!-- Core Capabilities -->
+  <section class="section" id="capabilities">
     <div class="container">
       <div class="section__header fade-in">
-        <div class="section__eyebrow">Our Platforms</div>
-        <h2 class="section__title">Two platforms.<br>One unified mission.</h2>
-        <p class="section__body">AI-powered tools built for those who need to know first — whether defending networks or navigating markets.</p>
+        <div class="section__eyebrow" style="color: var(--color-blue);">
+          <span style="display: block; width: 16px; height: 1.5px; background: var(--color-blue);"></span>
+          Core Capabilities
+        </div>
+        <h2 class="section__title">Simulate to validate.<br>Validate to improve.</h2>
+        <p class="section__body">CatchSim provides a structured research environment for security teams to test their defenses — without the noise, cost, or unpredictability of third-party red team engagements.</p>
       </div>
 
-      <div class="products-grid">
-        <!-- CatchEquities Card -->
-        <a href="./catchequities.html" class="product-card product-card--equities fade-in">
-          <div class="product-card__glow"></div>
-          <div class="product-card__badge">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-            Active — SaaS Product
-          </div>
-          <div class="product-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-              <polyline points="16 7 22 7 22 13"/>
-            </svg>
-          </div>
-          <h3 class="product-card__title">Catch<span>Equities</span></h3>
-          <p class="product-card__desc">AI-driven financial intelligence and analytics platform. Identify confident market signals and anomalies for capitalization — before the market catches up.</p>
-          <ul class="product-card__features" role="list">
-            <li>Real-time signal detection across equities &amp; markets</li>
-            <li>AI-powered anomaly identification &amp; pattern recognition</li>
-            <li>Institutional-grade analytics for individual investors</li>
-            <li>Confident market intelligence with explainable signals</li>
-          </ul>
-          <span class="product-card__cta">
-            Explore CatchEquities
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </a>
-
-        <!-- CatchSim Card -->
-        <a href="./catchsim.html" class="product-card product-card--sim fade-in">
-          <div class="product-card__glow"></div>
-          <div class="product-card__badge" style="background: var(--color-blue-highlight); color: var(--color-blue);">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-            Research Platform
-          </div>
-          <div class="product-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <div class="sim-grid-2">
+        <div class="sim-feature-tile fade-in">
+          <div class="sim-feature-tile__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               <polyline points="9 12 11 14 15 10"/>
             </svg>
           </div>
-          <h3 class="product-card__title">Catch<span>Sim</span></h3>
-          <p class="product-card__desc">Cybersecurity simulation platform for validating detection, uncovering gaps, and strengthening resilience. Reduce risk through controlled, intelligent simulation.</p>
-          <ul class="product-card__features" role="list">
-            <li>Detection validation against realistic attack scenarios</li>
-            <li>Gap analysis to surface blind spots before adversaries do</li>
-            <li>Resilience testing through controlled simulation</li>
-            <li>Continuous improvement cycle for security posture</li>
-          </ul>
-          <span class="product-card__cta" style="color: var(--color-blue)">
-            Discover CatchSim
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </a>
+          <h3 class="sim-feature-tile__title">Detection Validation</h3>
+          <p class="sim-feature-tile__body">Run controlled attack simulations against your detection stack. Know definitively whether your SIEM, EDR, and network controls catch what they're supposed to — with evidence, not assumptions.</p>
+        </div>
+
+        <div class="sim-feature-tile fade-in">
+          <div class="sim-feature-tile__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="M21 21l-4.35-4.35"/>
+            </svg>
+          </div>
+          <h3 class="sim-feature-tile__title">Gap Analysis</h3>
+          <p class="sim-feature-tile__body">Surface the blind spots your detection tools leave open. CatchSim maps simulation outcomes against your coverage model to identify where adversaries could operate undetected.</p>
+        </div>
+
+        <div class="sim-feature-tile fade-in">
+          <div class="sim-feature-tile__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="17 1 21 5 17 9"/>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+              <polyline points="7 23 3 19 7 15"/>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+            </svg>
+          </div>
+          <h3 class="sim-feature-tile__title">Resilience Testing</h3>
+          <p class="sim-feature-tile__body">Test the full incident response cycle — from initial detection to containment. Measure response times, escalation paths, and recovery procedures under realistic conditions.</p>
+        </div>
+
+        <div class="sim-feature-tile fade-in">
+          <div class="sim-feature-tile__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <h3 class="sim-feature-tile__title">Risk Quantification</h3>
+          <p class="sim-feature-tile__body">Translate simulation findings into quantified risk metrics. Report on coverage rates, mean time to detect, and security posture changes over time with structured data output.</p>
+        </div>
+
+        <div class="sim-feature-tile fade-in">
+          <div class="sim-feature-tile__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3 class="sim-feature-tile__title">Continuous Improvement</h3>
+          <p class="sim-feature-tile__body">Security posture degrades as environments change. CatchSim enables repeatable simulation cycles that track improvement — turning point-in-time testing into an ongoing program.</p>
+        </div>
+
+        <div class="sim-feature-tile fade-in">
+          <div class="sim-feature-tile__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <h3 class="sim-feature-tile__title">AI-Driven Scenarios</h3>
+          <p class="sim-feature-tile__body">Simulation scenarios informed by real-world threat intelligence and AI-generated attack path modeling. Test against tactics your team hasn't anticipated yet.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Vision Band -->
-  <div class="vision-band">
-    <div class="container">
-      <div class="vision-band__inner">
-        <blockquote class="vision-band__quote">
-          "Build high-trust software that helps<br>organizations and investors <span class="highlight">identify what matters<br>before others do.</span>"
-        </blockquote>
-        <p class="vision-band__sub">The Catch Ventures mission — fusing AI precision with deep domain intelligence.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- About / Mission -->
-  <section class="section" id="about">
+  <!-- Research Focus & Visual -->
+  <section class="section section--alt">
     <div class="container">
       <div class="feature-split">
-        <div class="feature-split__text fade-in">
-          <div class="section__eyebrow">About Catch Ventures</div>
-          <h2 class="feature-split__title">Intelligence platforms built for those who can't afford to be late.</h2>
-          <p class="feature-split__body">
-            Catch Ventures builds AI-first platforms at the intersection of financial markets and cybersecurity. Our philosophy is simple: the organizations and investors who act on reliable intelligence early are the ones that win.
-          </p>
-          <ul class="feature-list" role="list">
-            <li>
-              <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              AI platforms built for speed and signal precision
-            </li>
-            <li>
-              <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              High-trust software with explainable, verifiable outputs
-            </li>
-            <li>
-              <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Deployed securely on cloud-native AWS infrastructure
-            </li>
-            <li>
-              <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Dual-domain expertise: financial markets &amp; cybersecurity
-            </li>
-          </ul>
-        </div>
         <div class="feature-split__visual fade-in" aria-hidden="true">
           <div class="signal-display">
-            <!-- Inline SVG visualization — CatchEquities Opportunity Radar style -->
-            <svg viewBox="0 0 400 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <!-- CatchSim visual: attack simulation topology — CatchEquities GUI style -->
+            <svg viewBox="0 0 420 340" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <!-- Glow filter for signal line -->
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="4" result="blur"/>
-                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-                <!-- Dot glow -->
-                <filter id="dotGlow" x="-100%" y="-100%" width="300%" height="300%">
+                <!-- Node glow -->
+                <filter id="nodeGlow" x="-40%" y="-40%" width="180%" height="180%">
                   <feGaussianBlur stdDeviation="5" result="blur"/>
                   <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
-                <!-- Area gradient — cyan fade down -->
-                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#29b6d4" stop-opacity="0.18"/>
-                  <stop offset="100%" stop-color="#29b6d4" stop-opacity="0.01"/>
-                </linearGradient>
-                <!-- Line gradient — teal → cyan → indigo at breakout -->
-                <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%"   stop-color="#1a8fa8" stop-opacity="0.6"/>
-                  <stop offset="55%"  stop-color="#29b6d4" stop-opacity="1"/>
-                  <stop offset="80%"  stop-color="#29b6d4" stop-opacity="1"/>
-                  <stop offset="100%" stop-color="#818cf8" stop-opacity="0.9"/>
-                </linearGradient>
-                <!-- Clip to chart area -->
-                <clipPath id="chartClip">
-                  <rect x="0" y="0" width="400" height="270"/>
-                </clipPath>
+                <!-- Arrow glow -->
+                <filter id="arrowGlow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <!-- RUNNING button glow -->
+                <filter id="btnGlow" x="-20%" y="-40%" width="140%" height="180%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
               </defs>
 
               <!-- Background -->
-              <rect width="400" height="300" fill="#0d1117" rx="0"/>
+              <rect width="420" height="340" fill="#0d1117" rx="12"/>
 
-              <!-- Subtle grid lines -->
-              <g stroke="#e6edf3" stroke-width="0.5" opacity="0.05">
-                <line x1="0" y1="60"  x2="400" y2="60"/>
-                <line x1="0" y1="120" x2="400" y2="120"/>
-                <line x1="0" y1="180" x2="400" y2="180"/>
-                <line x1="0" y1="240" x2="400" y2="240"/>
-                <line x1="80"  y1="0" x2="80"  y2="270"/>
-                <line x1="160" y1="0" x2="160" y2="270"/>
-                <line x1="240" y1="0" x2="240" y2="270"/>
-                <line x1="320" y1="0" x2="320" y2="270"/>
-              </g>
+              <!-- ── Top bar ── -->
+              <rect x="0" y="0" width="420" height="44" fill="#161b22" rx="12"/>
+              <rect x="0" y="30" width="420" height="14" fill="#161b22"/>
+              <rect x="0" y="43" width="420" height="1" fill="#21262d"/>
+              <!-- Title text -->
+              <text x="16" y="27" font-size="10" fill="#8b949e"
+                font-family="JetBrains Mono, monospace" font-weight="600" letter-spacing="0.08em">
+                CATCHSIM · SIMULATION CONSOLE
+              </text>
+              <!-- RUNNING badge — indigo pill -->
+              <rect x="304" y="11" width="100" height="22" rx="11" fill="#6366f1" filter="url(#btnGlow)" opacity="0.9"/>
+              <text x="354" y="26" text-anchor="middle" font-size="9.5" fill="#ffffff"
+                font-family="JetBrains Mono, monospace" font-weight="700" letter-spacing="0.06em">▶ RUNNING</text>
 
-              <!-- Y-axis price labels -->
-              <text x="6" y="63"  font-size="8" fill="#484f58" font-family="JetBrains Mono, monospace">HIGH</text>
-              <text x="6" y="123" font-size="8" fill="#484f58" font-family="JetBrains Mono, monospace">MID</text>
-              <text x="6" y="183" font-size="8" fill="#484f58" font-family="JetBrains Mono, monospace">LOW</text>
+              <!-- ── Topology area background ── -->
+              <rect x="8" y="52" width="404" height="208" fill="#0d1117" rx="6"/>
 
-              <!-- Dashed baseline (secondary correlated asset, purple) -->
-              <polyline
-                points="0,230 40,228 80,232 120,226 160,224 200,220 240,215 280,218 320,210 360,205 400,198"
-                fill="none" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"
-                clip-path="url(#chartClip)"/>
+              <!-- ── Connection lines (drawn before nodes so nodes sit on top) ── -->
 
-              <!-- Area fill under main price line -->
-              <polygon
-                points="0,210 30,205 60,195 90,185 110,190 140,165 165,148 190,132 210,118 230,100 248,86 260,75 272,92 285,138 300,145 315,115 330,95 348,70 375,50 400,38 400,270 0,270"
-                fill="url(#areaGrad)"
-                clip-path="url(#chartClip)"/>
+              <!-- Threat → Network (dashed red, attack) -->
+              <line x1="110" y1="140" x2="218" y2="108"
+                stroke="#ef4444" stroke-width="1.8" stroke-dasharray="6,4" opacity="0.7"
+                filter="url(#arrowGlow)"/>
+              <!-- arrowhead -->
+              <polygon points="222,106 212,102 214,112" fill="#ef4444" opacity="0.8"/>
+              <text x="148" y="114" font-size="8.5" fill="#ef4444"
+                font-family="JetBrains Mono, monospace" opacity="0.9">Attack</text>
 
-              <!-- Main price line — CatchEquities cyan, thick, glowing -->
-              <polyline
-                points="0,210 30,205 60,195 90,185 110,190 140,165 165,148 190,132 210,118 230,100 248,86 260,75 272,92 285,138 300,145 315,115 330,95 348,70 375,50 400,38"
-                fill="none" stroke="url(#lineGrad2)" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"
-                filter="url(#glow)" clip-path="url(#chartClip)"/>
+              <!-- Threat → Endpoint (dashed red, lateral) -->
+              <line x1="110" y1="168" x2="218" y2="196"
+                stroke="#ef4444" stroke-width="1.8" stroke-dasharray="6,4" opacity="0.7"
+                filter="url(#arrowGlow)"/>
+              <polygon points="222,198 212,192 214,202" fill="#ef4444" opacity="0.8"/>
+              <text x="145" y="196" font-size="8.5" fill="#ef4444"
+                font-family="JetBrains Mono, monospace" opacity="0.9">Lateral</text>
 
-              <!-- Signal detection dot 1 — first breakout point -->
-              <!-- Outer pulse ring -->
-              <circle cx="248" cy="86" r="10" fill="none" stroke="#29b6d4" stroke-width="1" opacity="0.3"/>
-              <circle cx="248" cy="86" r="6"  fill="none" stroke="#29b6d4" stroke-width="1" opacity="0.5"/>
-              <!-- Filled dot -->
-              <circle cx="248" cy="86" r="4"  fill="#29b6d4" filter="url(#dotGlow)"/>
+              <!-- Network → SIEM (solid indigo, faint — gap means partial/missed) -->
+              <line x1="268" y1="112" x2="328" y2="148"
+                stroke="#6366f1" stroke-width="1.8" opacity="0.45"/>
+              <polygon points="332,150 322,144 324,154" fill="#6366f1" opacity="0.5"/>
+              <text x="286" y="128" font-size="8.5" fill="#6366f1"
+                font-family="JetBrains Mono, monospace" opacity="0.8">Alert ✓</text>
 
-              <!-- Signal detection dot 2 — second breakout continuation -->
-              <circle cx="348" cy="70" r="10" fill="none" stroke="#29b6d4" stroke-width="1" opacity="0.3"/>
-              <circle cx="348" cy="70" r="6"  fill="none" stroke="#29b6d4" stroke-width="1" opacity="0.5"/>
-              <circle cx="348" cy="70" r="4"  fill="#29b6d4" filter="url(#dotGlow)"/>
+              <!-- Endpoint → SIEM (solid cyan, detected) -->
+              <line x1="268" y1="196" x2="328" y2="168"
+                stroke="#29b6d4" stroke-width="2.2" filter="url(#arrowGlow)"/>
+              <polygon points="332,166 322,162 324,172" fill="#29b6d4"/>
 
-              <!-- SIGNAL DETECTED tooltip — pill style -->
-              <rect x="156" y="55" width="134" height="24" rx="6"
-                fill="#161b22" stroke="#29b6d4" stroke-width="1.2"/>
-              <text x="223" y="71" text-anchor="middle"
-                font-size="9.5" fill="#29b6d4"
-                font-family="JetBrains Mono, monospace"
-                font-weight="700" letter-spacing="0.07em">SIGNAL DETECTED</text>
+              <!-- ── Nodes ── -->
 
-              <!-- Connector line from tooltip to dot -->
-              <line x1="248" y1="79" x2="248" y2="55" stroke="#29b6d4" stroke-width="1" opacity="0.4" stroke-dasharray="2,2"/>
+              <!-- THREAT ACTOR — red, left -->
+              <circle cx="76" cy="154" r="38" fill="#0d1117" stroke="#ef4444" stroke-width="2.2" filter="url(#nodeGlow)"/>
+              <circle cx="76" cy="154" r="32" fill="#0f1520" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
+              <text x="76" y="150" text-anchor="middle" font-size="9" fill="#ef4444"
+                font-family="JetBrains Mono, monospace" font-weight="700">THREAT</text>
+              <text x="76" y="163" text-anchor="middle" font-size="9" fill="#ef4444"
+                font-family="JetBrains Mono, monospace" font-weight="700">ACTOR</text>
 
-              <!-- Score badge — "87" in top right (matches Opportunity Radar score ring concept) -->
-              <rect x="338" y="8" width="50" height="22" rx="4" fill="rgba(34,197,94,0.12)" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
-              <text x="363" y="23" text-anchor="middle" font-size="9" fill="#22c55e" font-family="JetBrains Mono, monospace" font-weight="700">▲ +12.4%</text>
+              <!-- NETWORK PERIMETER — indigo, top-center -->
+              <circle cx="244" cy="96" r="34" fill="#0d1117" stroke="#6366f1" stroke-width="2.2" filter="url(#nodeGlow)"/>
+              <circle cx="244" cy="96" r="28" fill="#0f1520" stroke="#6366f1" stroke-width="1" opacity="0.4"/>
+              <text x="244" y="91" text-anchor="middle" font-size="8.5" fill="#818cf8"
+                font-family="JetBrains Mono, monospace" font-weight="700">NETWORK</text>
+              <text x="244" y="104" text-anchor="middle" font-size="8.5" fill="#818cf8"
+                font-family="JetBrains Mono, monospace" font-weight="700">PERIMETER</text>
 
-              <!-- Ticker label -->
-              <rect x="8" y="8" width="38" height="18" rx="3" fill="#1c2333" stroke="#30363d" stroke-width="1"/>
-              <text x="27" y="21" text-anchor="middle" font-size="8.5" fill="#e6edf3" font-family="JetBrains Mono, monospace" font-weight="700">CRWD</text>
+              <!-- ENDPOINT EDR — indigo, bottom-center -->
+              <circle cx="244" cy="212" r="34" fill="#0d1117" stroke="#6366f1" stroke-width="2.2" filter="url(#nodeGlow)"/>
+              <circle cx="244" cy="212" r="28" fill="#0f1520" stroke="#6366f1" stroke-width="1" opacity="0.4"/>
+              <text x="244" y="207" text-anchor="middle" font-size="8.5" fill="#818cf8"
+                font-family="JetBrains Mono, monospace" font-weight="700">ENDPOINT</text>
+              <text x="244" y="220" text-anchor="middle" font-size="8.5" fill="#818cf8"
+                font-family="JetBrains Mono, monospace" font-weight="700">EDR</text>
 
-              <!-- Signal type label bottom -->
-              <text x="8" y="290" font-size="8" fill="#484f58" font-family="JetBrains Mono, monospace" letter-spacing="0.05em">EMOTIONAL SELLOFF · SCORE 87 · STRONG</text>
-              <!-- Second legend -->
-              <line x1="8" y1="286" x2="8" y2="286"/>
+              <!-- SIEM DETECTED — cyan, right -->
+              <circle cx="358" cy="158" r="38" fill="#0d1117" stroke="#29b6d4" stroke-width="2.5" filter="url(#nodeGlow)"/>
+              <circle cx="358" cy="158" r="32" fill="#0f1820" stroke="#29b6d4" stroke-width="1" opacity="0.3"/>
+              <text x="358" y="153" text-anchor="middle" font-size="9" fill="#29b6d4"
+                font-family="JetBrains Mono, monospace" font-weight="700">SIEM</text>
+              <text x="358" y="166" text-anchor="middle" font-size="9" fill="#29b6d4"
+                font-family="JetBrains Mono, monospace" font-weight="700">DETECTED</text>
 
-              <!-- Dashed line legend label -->
-              <line x1="8" y1="282" x2="22" y2="282" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
-              <text x="26" y="285" font-size="7.5" fill="#484f58" font-family="JetBrains Mono, monospace">Correlated asset (BTC)</text>
+              <!-- GAP badge — amber, above Network node -->
+              <rect x="216" y="46" width="56" height="22" rx="5"
+                fill="rgba(245,158,11,0.12)" stroke="rgba(245,158,11,0.35)" stroke-width="1.2"/>
+              <text x="244" y="61" text-anchor="middle" font-size="9" fill="#f59e0b"
+                font-family="JetBrains Mono, monospace" font-weight="700">⚠ GAP</text>
+
+              <!-- ── Results panel ── -->
+              <rect x="8" y="268" width="404" height="64" rx="8"
+                fill="#161b22" stroke="#21262d" stroke-width="1"/>
+              <text x="20" y="286" font-size="8.5" fill="#484f58"
+                font-family="JetBrains Mono, monospace" font-weight="600" letter-spacing="0.08em">
+                SIMULATION RESULTS
+              </text>
+
+              <!-- Row 1 -->
+              <text x="20"  y="306" font-size="8.5" fill="#8b949e" font-family="JetBrains Mono, monospace">Detection Rate:</text>
+              <text x="128" y="306" font-size="8.5" fill="#29b6d4" font-family="JetBrains Mono, monospace" font-weight="700">87% (14/16 scenarios)</text>
+              <text x="242" y="306" font-size="8.5" fill="#8b949e" font-family="JetBrains Mono, monospace">Gaps Found:</text>
+              <text x="314" y="306" font-size="8.5" fill="#f59e0b" font-family="JetBrains Mono, monospace" font-weight="700">2 critical</text>
+
+              <!-- Row 2 -->
+              <text x="20"  y="322" font-size="8.5" fill="#8b949e" font-family="JetBrains Mono, monospace">MTTD:</text>
+              <text x="128" y="322" font-size="8.5" fill="#29b6d4" font-family="JetBrains Mono, monospace" font-weight="700">4m 32s avg</text>
+              <text x="242" y="322" font-size="8.5" fill="#8b949e" font-family="JetBrains Mono, monospace">Coverage:</text>
+              <text x="314" y="322" font-size="8.5" fill="#29b6d4" font-family="JetBrains Mono, monospace" font-weight="700">MITRE T1566, T1190</text>
             </svg>
+        </div>
+
+        <div class="fade-in">
+          <div class="section__eyebrow" style="color: var(--color-blue);">
+            <span style="display: block; width: 16px; height: 1.5px; background: var(--color-blue);"></span>
+            Research Focus
+          </div>
+          <h2 class="feature-split__title">What CatchSim is built to answer.</h2>
+          <p class="feature-split__body">The research driving CatchSim is focused on four fundamental questions every security team needs to answer — but rarely can without dedicated tooling.</p>
+
+          <ul class="feature-list" role="list" style="margin-top: var(--space-6);">
+            <li>
+              <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Do our controls actually detect what they claim to?
+            </li>
+            <li>
+              <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              Where are the gaps adversaries would exploit first?
+            </li>
+            <li>
+              <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)" stroke-width="2" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/></svg>
+              How does our posture change as the environment evolves?
+            </li>
+            <li>
+              <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)" stroke-width="2" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Can we quantify and report on risk reduction over time?
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-in">
+        <div class="section__eyebrow" style="color: var(--color-blue);">
+          <span style="display: block; width: 16px; height: 1.5px; background: var(--color-blue);"></span>
+          The Simulation Cycle
+        </div>
+        <h2 class="section__title">A repeatable process for<br>continuous security improvement.</h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
+        <div class="sim-process-step fade-in">
+          <div class="sim-process-step__num">01</div>
+          <div>
+            <h3 class="sim-process-step__title">Define Scope</h3>
+            <p class="sim-process-step__body">Select the attack scenarios, threat actors, and MITRE ATT&amp;CK techniques to simulate. Tailor the test to your specific environment and threat model.</p>
+          </div>
+        </div>
+        <div class="sim-process-step fade-in">
+          <div class="sim-process-step__num">02</div>
+          <div>
+            <h3 class="sim-process-step__title">Run Simulation</h3>
+            <p class="sim-process-step__body">Execute controlled attack sequences in your environment. CatchSim orchestrates scenarios without impacting production — safe, repeatable, auditable.</p>
+          </div>
+        </div>
+        <div class="sim-process-step fade-in">
+          <div class="sim-process-step__num">03</div>
+          <div>
+            <h3 class="sim-process-step__title">Analyze Results</h3>
+            <p class="sim-process-step__body">Review detection rates, MTTD, escalation paths, and gaps. See exactly which controls fired, which didn't, and where the failures occurred.</p>
+          </div>
+        </div>
+        <div class="sim-process-step fade-in">
+          <div class="sim-process-step__num">04</div>
+          <div>
+            <h3 class="sim-process-step__title">Remediate &amp; Retest</h3>
+            <p class="sim-process-step__body">Address identified gaps with detection logic, policy changes, or control upgrades — then immediately retest to confirm improvement. Close the loop.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Pillars -->
-  <section class="section section--alt" id="pillars">
+  <!-- CTA Band -->
+  <section class="sim-contact-band">
     <div class="container">
-      <div class="section__header fade-in">
-        <div class="section__eyebrow">Our Approach</div>
-        <h2 class="section__title">Three principles.<br>Two platforms. One vision.</h2>
-      </div>
-
-      <div class="pillars-grid">
-        <div class="pillar fade-in">
-          <div class="pillar__number">01</div>
-          <h3 class="pillar__title">Catch Risk Early</h3>
-          <p class="pillar__body">Surface threats and market anomalies before they become costly. Our AI models are designed to identify patterns that precede adverse events — giving you time to act.</p>
+      <div class="sim-contact-band__inner fade-in">
+        <div class="section__eyebrow" style="justify-content: center; margin-bottom: var(--space-4); color: var(--color-blue);">
+          <span style="display: block; width: 16px; height: 1.5px; background: var(--color-blue);"></span>
+          CatchSim Research
         </div>
-        <div class="pillar fade-in">
-          <div class="pillar__number">02</div>
-          <h3 class="pillar__title">Catch Opportunity Sooner</h3>
-          <p class="pillar__body">The best opportunities are recognized earliest. CatchEquities delivers confident, actionable signals that help investors capitalize on market moves before consensus forms.</p>
-        </div>
-        <div class="pillar fade-in">
-          <div class="pillar__number">03</div>
-          <h3 class="pillar__title">Build High Trust</h3>
-          <p class="pillar__body">Trust in software is earned through transparency and accuracy. Every output from our platforms is designed to be explainable, verifiable, and reliable under pressure.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Band -->
-  <section class="contact-band" id="contact">
-    <div class="container">
-      <div class="contact-band__inner fade-in">
-        <div class="section__eyebrow" style="justify-content: center; margin-bottom: var(--space-4);">Get in Touch</div>
-        <h2 class="contact-band__title">Interested in working together?</h2>
-        <p class="contact-band__sub">Whether you're an investor, potential partner, or want early access to our platforms — we'd like to hear from you.</p>
+        <h2 class="contact-band__title">Interested in the research?</h2>
+        <p class="contact-band__sub">CatchSim is a research-stage platform. We're engaging with security teams and researchers who want to validate detection and improve resilience at scale.</p>
         <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-          <a href="mailto:hello@catchequities.com" class="btn btn--primary">
-            hello@catchequities.com
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="https://catchsim.com" target="_blank" rel="noopener noreferrer" class="btn btn--primary" style="background: var(--color-blue); box-shadow: none;">
+            Visit catchsim.com
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
+          <a href="./index.html#contact" class="btn btn--ghost">Contact Catch Ventures</a>
         </div>
       </div>
     </div>
@@ -947,29 +1103,25 @@
           </a>
         </div>
       </div>
-
       <div>
         <p class="footer__col-title">Product</p>
         <ul class="footer__links" role="list">
           <li><a href="./catchequities.html">CatchEquities</a></li>
         </ul>
       </div>
-
       <div>
         <p class="footer__col-title">Research</p>
         <ul class="footer__links" role="list">
           <li><a href="./catchsim.html">CatchSim</a></li>
         </ul>
       </div>
-
       <div>
         <p class="footer__col-title">Company</p>
         <ul class="footer__links" role="list">
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="./index.html#about">About</a></li>
+          <li><a href="./index.html#contact">Contact</a></li>
         </ul>
       </div>
-
       <div>
         <p class="footer__col-title">Platforms</p>
         <ul class="footer__links" role="list">
@@ -978,7 +1130,6 @@
         </ul>
       </div>
     </div>
-
     <div class="footer__bottom">
       <p class="footer__copy">&copy; 2026 Catch Ventures. All rights reserved.</p>
       <div class="footer__attribution">
@@ -989,14 +1140,26 @@
 </footer>
 
 <script>
-  // Force dark mode always
-  document.documentElement.setAttribute('data-theme', 'dark');
-
+  (function(){
+    const t = document.querySelector('[data-theme-toggle]');
+    const r = document.documentElement;
+    let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+    r.setAttribute('data-theme', d);
+    const sunIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+    const moonIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    if (t) {
+      t.innerHTML = d === 'dark' ? sunIcon : moonIcon;
+      t.addEventListener('click', () => {
+        d = d === 'dark' ? 'light' : 'dark';
+        r.setAttribute('data-theme', d);
+        t.setAttribute('aria-label', 'Switch to ' + (d === 'dark' ? 'light' : 'dark') + ' mode');
+        t.innerHTML = d === 'dark' ? sunIcon : moonIcon;
+      });
+    }
+  })();
   (function(){
     const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('nav--scrolled', window.scrollY > 10);
-    }, { passive: true });
+    window.addEventListener('scroll', () => { nav.classList.toggle('nav--scrolled', window.scrollY > 10); }, { passive: true });
   })();
   (function(){
     const toggle = document.getElementById('mobileToggle');
