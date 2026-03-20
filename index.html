@@ -486,6 +486,212 @@
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+
+  /* ── CatchEquities Feature Section ── */
+  .products-grid {
+    display: block !important;
+  }
+  .ceq-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 48px;
+    margin-bottom: 24px;
+  }
+  .ceq-feature__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #29b6d4;
+    background: rgba(41,182,212,0.1);
+    border: 1px solid rgba(41,182,212,0.25);
+    border-radius: 6px;
+    padding: 4px 10px;
+    margin-bottom: 20px;
+  }
+  .ceq-feature__title {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #e6edf3;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+  }
+  .ceq-feature__desc {
+    font-size: 15px;
+    color: #8b949e;
+    line-height: 1.7;
+    margin: 0 0 24px 0;
+  }
+  .ceq-feature__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #29b6d4;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(41,182,212,0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .ceq-feature__link:hover { border-color: #29b6d4; color: #5ecfdf; }
+
+  /* GUI mock */
+  .ceq-feature__gui {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #30363d;
+    box-shadow: 0 0 40px rgba(41,182,212,0.07);
+  }
+  .ceq-gui__chrome {
+    background: #1c2333;
+    border-bottom: 1px solid #30363d;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ceq-gui__dots {
+    display: flex;
+    gap: 6px;
+  }
+  .ceq-gui__dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+  }
+  .ceq-gui__tab {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #e6edf3;
+  }
+  .ceq-gui__body {
+    background: #0d1117;
+    padding: 16px;
+    position: relative;
+  }
+  .ceq-gui__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .ceq-gui__header-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #484f58;
+  }
+  .ceq-gui__live {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #22c55e;
+  }
+  .ceq-gui__live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: ceq-pulse 1.8s infinite;
+  }
+  @keyframes ceq-pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .ceq-gui__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ceq-signal-card {
+    background: #1c2333;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .ceq-signal__score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+    line-height: 1;
+  }
+  .ceq-signal__score--high { color: #29b6d4; }
+  .ceq-signal__score--mid  { color: #f59e0b; }
+  .ceq-signal__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ceq-signal__ticker {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #e6edf3;
+  }
+  .ceq-signal__type {
+    font-size: 11px;
+    color: #8b949e;
+  }
+  .ceq-signal__bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    margin-top: 4px;
+  }
+  .ceq-signal__bars span {
+    width: 4px;
+    border-radius: 2px;
+    display: block;
+  }
+  .ceq-signal__dir {
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+  .ceq-signal__dir--bull { color: #22c55e; background: rgba(34,197,94,0.1); }
+  .ceq-signal__dir--bear { color: #ef4444; background: rgba(239,68,68,0.1); }
+  .ceq-gui__fade {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 72px;
+    background: linear-gradient(to bottom, transparent, #0d1117);
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .ceq-feature {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 28px;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -631,32 +837,116 @@
       </div>
 
       <div class="products-grid">
-        <!-- CatchEquities Card -->
-        <a href="./catchequities.html" class="product-card product-card--equities fade-in">
-          <div class="product-card__glow"></div>
-          <div class="product-card__badge">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-            Active — SaaS Product
+        <!-- CatchEquities Feature Card -->
+        <div class="ceq-feature fade-in">
+          <!-- Left: copy -->
+          <div class="ceq-feature__copy">
+            <div class="ceq-feature__badge">
+              <svg width="7" height="7" viewBox="0 0 10 10" fill="#29b6d4"><circle cx="5" cy="5" r="5"/></svg>
+              Beta — Invite Only
+            </div>
+            <h3 class="ceq-feature__title">AI Signal Intelligence<br>for Equities</h3>
+            <p class="ceq-feature__desc">A proprietary scoring engine that monitors thousands of tickers in real time — surfacing high-confidence trade signals ranked 0–100 before you would have spotted them manually.</p>
+            <a href="https://www.catchequities.com" target="_blank" rel="noopener noreferrer" class="ceq-feature__link">
+              catchequities.com
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
           </div>
-          <div class="product-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-              <polyline points="16 7 22 7 22 13"/>
-            </svg>
+          <!-- Right: mock GUI -->
+          <div class="ceq-feature__gui">
+            <!-- Browser chrome -->
+            <div class="ceq-gui__chrome">
+              <div class="ceq-gui__dots">
+                <span style="background:#ef4444"></span>
+                <span style="background:#f59e0b"></span>
+                <span style="background:#22c55e"></span>
+              </div>
+              <div class="ceq-gui__tab">CatchEquities</div>
+            </div>
+            <!-- Window body -->
+            <div class="ceq-gui__body">
+              <!-- Header row -->
+              <div class="ceq-gui__header">
+                <span class="ceq-gui__header-title">Signal Feed</span>
+                <span class="ceq-gui__live"><span class="ceq-gui__live-dot"></span>Live</span>
+              </div>
+              <!-- Signal cards -->
+              <div class="ceq-gui__cards">
+
+                <!-- Card 1: NVDA 91 -->
+                <div class="ceq-signal-card">
+                  <div class="ceq-signal__score ceq-signal__score--high">91</div>
+                  <div class="ceq-signal__info">
+                    <div class="ceq-signal__ticker">NVDA</div>
+                    <div class="ceq-signal__type">Insider Confidence</div>
+                    <div class="ceq-signal__bars">
+                      <span style="height:14px;background:#29b6d4"></span>
+                      <span style="height:18px;background:#29b6d4"></span>
+                      <span style="height:10px;background:#30363d"></span>
+                      <span style="height:16px;background:#29b6d4"></span>
+                      <span style="height:12px;background:#30363d"></span>
+                    </div>
+                  </div>
+                  <div class="ceq-signal__dir ceq-signal__dir--bull">↑ Bullish</div>
+                </div>
+
+                <!-- Card 2: META 87 -->
+                <div class="ceq-signal-card">
+                  <div class="ceq-signal__score ceq-signal__score--high">87</div>
+                  <div class="ceq-signal__info">
+                    <div class="ceq-signal__ticker">META</div>
+                    <div class="ceq-signal__type">Momentum Burst</div>
+                    <div class="ceq-signal__bars">
+                      <span style="height:16px;background:#29b6d4"></span>
+                      <span style="height:20px;background:#29b6d4"></span>
+                      <span style="height:14px;background:#29b6d4"></span>
+                      <span style="height:10px;background:#30363d"></span>
+                      <span style="height:18px;background:#29b6d4"></span>
+                    </div>
+                  </div>
+                  <div class="ceq-signal__dir ceq-signal__dir--bull">↑ Bullish</div>
+                </div>
+
+                <!-- Card 3: TSLA 74 -->
+                <div class="ceq-signal-card">
+                  <div class="ceq-signal__score ceq-signal__score--mid">74</div>
+                  <div class="ceq-signal__info">
+                    <div class="ceq-signal__ticker">TSLA</div>
+                    <div class="ceq-signal__type">Mean Reversion</div>
+                    <div class="ceq-signal__bars">
+                      <span style="height:12px;background:#f59e0b"></span>
+                      <span style="height:16px;background:#f59e0b"></span>
+                      <span style="height:10px;background:#30363d"></span>
+                      <span style="height:14px;background:#f59e0b"></span>
+                      <span style="height:8px;background:#30363d"></span>
+                    </div>
+                  </div>
+                  <div class="ceq-signal__dir ceq-signal__dir--bear">↓ Bearish</div>
+                </div>
+
+                <!-- Card 4: AMZN 82 -->
+                <div class="ceq-signal-card">
+                  <div class="ceq-signal__score ceq-signal__score--high">82</div>
+                  <div class="ceq-signal__info">
+                    <div class="ceq-signal__ticker">AMZN</div>
+                    <div class="ceq-signal__type">Volume Anomaly</div>
+                    <div class="ceq-signal__bars">
+                      <span style="height:18px;background:#29b6d4"></span>
+                      <span style="height:12px;background:#30363d"></span>
+                      <span style="height:16px;background:#29b6d4"></span>
+                      <span style="height:20px;background:#29b6d4"></span>
+                      <span style="height:14px;background:#29b6d4"></span>
+                    </div>
+                  </div>
+                  <div class="ceq-signal__dir ceq-signal__dir--bull">↑ Bullish</div>
+                </div>
+
+              </div>
+              <!-- Fade overlay -->
+              <div class="ceq-gui__fade"></div>
+            </div>
           </div>
-          <h3 class="product-card__title">Catch<span>Equities</span></h3>
-          <p class="product-card__desc">AI-driven financial intelligence and analytics platform. Identify confident market signals and anomalies for capitalization — before the market catches up.</p>
-          <ul class="product-card__features" role="list">
-            <li>Real-time signal detection across equities &amp; markets</li>
-            <li>AI-powered anomaly identification &amp; pattern recognition</li>
-            <li>Institutional-grade analytics for individual investors</li>
-            <li>Confident market intelligence with explainable signals</li>
-          </ul>
-          <span class="product-card__cta">
-            Explore CatchEquities
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </a>
+        </div>
 
         <!-- CatchSim Card -->
         <a href="./catchsim.html" class="product-card product-card--sim fade-in">
