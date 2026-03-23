@@ -693,79 +693,62 @@
   }
 
 
-  /* ── Contact Form ── */
-  .cv-contact-form {
+  /* ── Email Capture ── */
+  .cv-email-capture {
     width: 100%;
-    max-width: 560px;
+    max-width: 480px;
     margin: 28px auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
     text-align: left;
   }
-  .cv-contact-form__row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  .cv-contact-form__field {
+  .cv-email-capture__row {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .cv-contact-form__field label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #8b949e;
-  }
-  .cv-contact-form__field input,
-  .cv-contact-form__field textarea {
-    background: #0d1117;
+    gap: 0;
     border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 10px 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0d1117;
+    transition: border-color 0.2s;
+  }
+  .cv-email-capture__row:focus-within { border-color: #29b6d4; }
+  .cv-email-capture input[type="email"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 13px 16px;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     color: #e6edf3;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
   }
-  .cv-contact-form__field input::placeholder,
-  .cv-contact-form__field textarea::placeholder { color: #484f58; }
-  .cv-contact-form__field input:focus,
-  .cv-contact-form__field textarea:focus { border-color: #29b6d4; }
-  .cv-contact-form__submit {
+  .cv-email-capture input[type="email"]::placeholder { color: #484f58; }
+  .cv-email-capture button {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    gap: 7px;
     background: #29b6d4;
     color: #0d1117;
     border: none;
-    border-radius: 8px;
-    padding: 12px 28px;
+    padding: 13px 20px;
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     cursor: pointer;
     transition: background 0.2s, opacity 0.2s;
-    align-self: flex-start;
+    white-space: nowrap;
   }
-  .cv-contact-form__submit:hover { background: #5ecfdf; }
-  .cv-contact-form__submit:disabled { opacity: 0.5; cursor: not-allowed; }
-  .cv-contact-form__success {
+  .cv-email-capture button:hover { background: #5ecfdf; }
+  .cv-email-capture button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .cv-email-capture__success {
     display: none;
     font-size: 13px;
     color: #22c55e;
-    margin-top: 4px;
+    margin-top: 10px;
+    padding-left: 4px;
   }
-  .cv-contact-form__success.visible { display: block; }
-  @media (max-width: 600px) {
-    .cv-contact-form__row { grid-template-columns: 1fr; }
-    .cv-contact-form__submit { width: 100%; justify-content: center; }
+  .cv-email-capture__success.visible { display: block; }
+  @media (max-width: 480px) {
+    .cv-email-capture__row { flex-direction: column; border-radius: 10px; }
+    .cv-email-capture button { justify-content: center; border-radius: 0 0 8px 8px; }
   }
 
 </style>
@@ -1248,26 +1231,15 @@
         <h2 class="contact-band__title">Interested in working together?</h2>
         <p class="contact-band__sub">Whether you're an investor, potential partner, or want early access to our platforms — we'd like to hear from you.</p>
 
-        <form class="cv-contact-form" id="cv-contact-form" action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" method="POST" novalidate>
-          <div class="cv-contact-form__row">
-            <div class="cv-contact-form__field">
-              <label for="cf-name">Name</label>
-              <input type="text" id="cf-name" name="name" placeholder="Your name" required autocomplete="name">
-            </div>
-            <div class="cv-contact-form__field">
-              <label for="cf-email">Email</label>
-              <input type="email" id="cf-email" name="email" placeholder="you@example.com" required autocomplete="email">
-            </div>
+        <form class="cv-email-capture" id="cv-email-capture" action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" method="POST" novalidate>
+          <div class="cv-email-capture__row">
+            <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Your email address">
+            <button type="submit">
+              <span class="cv-email-capture__btn-text">Get in Touch</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
           </div>
-          <div class="cv-contact-form__field">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" rows="4" placeholder="Tell us what you're working on..." required></textarea>
-          </div>
-          <button type="submit" class="cv-contact-form__submit">
-            <span class="cv-contact-form__submit-text">Send Message</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-          <p class="cv-contact-form__success" id="cv-form-success" aria-live="polite">Message sent — we'll be in touch soon.</p>
+          <p class="cv-email-capture__success" id="cv-email-success" aria-live="polite">Got it — we'll be in touch soon.</p>
         </form>
       </div>
     </div>
@@ -1394,16 +1366,16 @@
 </script>
 
 <script>
-  // Contact form AJAX submission
+  // Email capture AJAX submission
   (function() {
-    var form = document.getElementById('cv-contact-form');
+    var form = document.getElementById('cv-email-capture');
     if (!form) return;
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      var btn = form.querySelector('.cv-contact-form__submit');
-      var success = document.getElementById('cv-form-success');
+      var btn = form.querySelector('button');
+      var success = document.getElementById('cv-email-success');
       btn.disabled = true;
-      btn.querySelector('.cv-contact-form__submit-text').textContent = 'Sending...';
+      btn.querySelector('.cv-email-capture__btn-text').textContent = 'Sending...';
       fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
@@ -1412,16 +1384,14 @@
         if (res.ok) {
           form.reset();
           success.classList.add('visible');
-          btn.querySelector('.cv-contact-form__submit-text').textContent = 'Sent!';
+          btn.querySelector('.cv-email-capture__btn-text').textContent = 'Sent!';
         } else {
           btn.disabled = false;
-          btn.querySelector('.cv-contact-form__submit-text').textContent = 'Send Message';
-          alert('Something went wrong. Please try again.');
+          btn.querySelector('.cv-email-capture__btn-text').textContent = 'Get in Touch';
         }
       }).catch(function() {
         btn.disabled = false;
-        btn.querySelector('.cv-contact-form__submit-text').textContent = 'Send Message';
-        alert('Network error. Please try again.');
+        btn.querySelector('.cv-email-capture__btn-text').textContent = 'Get in Touch';
       });
     });
   })();
