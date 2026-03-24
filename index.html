@@ -751,6 +751,37 @@
     .cv-email-capture button { justify-content: center; border-radius: 0 0 8px 8px; }
   }
 
+
+  /* CatchEquities icon tile + wordmark */
+  .ceq-feature__icon-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .ceq-feature__icon-tile {
+    width: 56px;
+    height: 56px;
+    background: #1c2333;
+    border: 1px solid #30363d;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 18px rgba(41,182,212,0.1);
+  }
+  .ceq-feature__wordmark {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #e6edf3;
+    margin: 0;
+    line-height: 1;
+  }
+  .ceq-feature__wordmark span { color: #29b6d4; }
+
 </style>
 </head>
 <body>
@@ -900,6 +931,16 @@
         <div class="ceq-feature fade-in">
           <!-- Left: copy -->
           <div class="ceq-feature__copy">
+            <!-- Icon tile + title — matches CatchSim style -->
+            <div class="ceq-feature__icon-wrap">
+              <div class="ceq-feature__icon-tile">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#29b6d4" stroke-width="1.8" aria-hidden="true">
+                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                  <polyline points="16 7 22 7 22 13"/>
+                </svg>
+              </div>
+              <h3 class="ceq-feature__wordmark">Catch<span>Equities</span></h3>
+            </div>
             <div class="ceq-feature__badge">
               <svg width="7" height="7" viewBox="0 0 10 10" fill="#29b6d4"><circle cx="5" cy="5" r="5"/></svg>
               Beta — Invite Only
