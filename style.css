@@ -92,8 +92,8 @@
   --content-wide: 1200px;
 
   /* Fonts */
-  --font-display: 'Cabinet Grotesk', 'Helvetica Neue', sans-serif;
-  --font-body:    'Satoshi', 'Inter', sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
 }
 
 /* — Dark Mode (Primary) — */
