@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>The Cat Video Game by Shea</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a1628;
+  overflow: hidden;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+}
+canvas { display: block; }
+#title-screen, #win-screen {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 10;
+}
+#title-screen {
+  background: linear-gradient(180deg, #0a3d6b 0%, #0e5a8a 40%, #1a7ab5 70%, #2a9fd4 100%);
+}
+#win-screen {
+  background: linear-gradient(180deg, #0a3d6b 0%, #1a7ab5 50%, #4dc9f6 100%);
+  display: none;
+}
+.game-title {
+  font-size: min(10vw, 60px); color: #ffdd44; text-shadow: 3px 3px 0 #e67e22, 0 0 20px rgba(255,221,68,0.5);
+  text-align: center; margin-bottom: 10px;
+}
+.game-subtitle {
+  font-size: min(5vw, 28px); color: #ffeebb; margin-bottom: 30px;
+}
+.cat-title-art {
+  font-size: min(25vw, 150px); margin-bottom: 20px;
+  animation: bob 2s ease-in-out infinite;
+}
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+.play-btn {
+  font-family: inherit; font-size: min(8vw, 48px); padding: 20px 60px;
+  background: linear-gradient(180deg, #ff6b9d, #e74c8b); color: white;
+  border: 4px solid #fff; border-radius: 30px; cursor: pointer;
+  box-shadow: 0 6px 0 #c0392b, 0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.1s;
+}
+.play-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #c0392b; }
+.win-msg { font-size: min(8vw, 50px); color: #ffdd44; text-shadow: 2px 2px 0 #e67e22; margin-bottom: 20px; }
+.stars { font-size: min(15vw, 80px); margin-bottom: 20px; animation: bob 1.5s ease-in-out infinite; }
+#hud {
+  position: fixed; top: 10px; left: 0; width: 100%; display: none;
+  justify-content: space-between; padding: 0 20px; z-index: 5;
+}
+.hud-item {
+  font-size: min(5vw, 28px); color: #ffdd44;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.3); padding: 5px 15px; border-radius: 15px;
+}
+#controls {
+  position: fixed; bottom: 0; left: 0; width: 100%; display: none;
+  justify-content: space-between; align-items: flex-end;
+  padding: 15px; z-index: 5;
+}
+.ctrl-btn {
+  width: min(22vw, 100px); height: min(22vw, 100px);
+  border-radius: 50%; border: 4px solid rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.2); display: flex; align-items: center;
+  justify-content: center; font-size: min(10vw, 50px); color: white;
+  -webkit-tap-highlight-color: transparent;
+}
+.ctrl-btn:active { background: rgba(255,255,255,0.5); }
+.arrow-group { display: flex; gap: 10px; }
+#bubbles-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+</style>
+</head>
+<body>
+
+<!-- Title Screen -->
+<div id="title-screen">
+  <div class="cat-title-art">🐱</div>
+  <div class="game-title">The Cat Video Game</div>
+  <div class="game-subtitle">by Shea</div>
+  <button class="play-btn" id="play-btn">PLAY!</button>
+</div>
+
+<!-- Win Screen -->
+<div id="win-screen">
+  <div class="stars">⭐🌟⭐</div>
+  <div class="win-msg">YOU WIN!</div>
+  <div class="game-subtitle">Meow Meow the Whisker did it!</div>
+  <div class="cat-title-art">🐱👑</div>
+  <button class="play-btn" id="replay-btn">Play Again!</button>
+</div>
+
+<!-- HUD -->
+<div id="hud">
+  <div class="hud-item" id="fish-count">🐟 0 / 10</div>
+  <div class="hud-item" id="lives-count">❤️❤️❤️</div>
+</div>
+
+<!-- Game Canvas -->
+<canvas id="game"></canvas>
+
+<!-- Touch Controls -->
+<div id="controls">
+  <div class="arrow-group">
+    <div class="ctrl-btn" id="btn-left">⬅️</div>
+    <div class="ctrl-btn" id="btn-right">➡️</div>
+  </div>
+  <div class="arrow-group">
+    <div class="ctrl-btn" id="btn-up">⬆️</div>
+    <div class="ctrl-btn" id="btn-down">⬇️</div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+
+// Game state
+let gameState = 'title'; // title, playing, win
+let cat = null;
+let jellyfish = [];
+let fish = [];
+let bubbles = [];
+let seaweed = [];
+let particles = [];
+let fishCollected = 0;
+let lives = 3;
+let cameraX = 0;
+let levelWidth = 4000;
+let invincibleTimer = 0;
+let frameCount = 0;
+
+// Input
+const keys = { left: false, right: false, up: false, down: false };
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+// --- DRAWING HELPERS ---
+function drawCat(x, y, size, flip, blinking) {
+  ctx.save();
+  ctx.translate(x, y);
+  if (flip) ctx.scale(-1, 1);
+
+  // Body
+  ctx.fillStyle = '#f4a460';
+  ctx.beginPath();
+  ctx.ellipse(0, 0, size, size * 0.75, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#d4894a';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Stripes
+  ctx.strokeStyle = '#d4894a';
+  ctx.lineWidth = 3;
+  for (let i = -1; i <= 1; i++) {
+    ctx.beginPath();
+    ctx.moveTo(i * size * 0.3, -size * 0.6);
+    ctx.lineTo(i * size * 0.3, -size * 0.2);
+    ctx.stroke();
+  }
+
+  // Head
+  const headY = -size * 0.4;
+  ctx.fillStyle = '#f4a460';
+  ctx.beginPath();
+  ctx.arc(0, headY, size * 0.55, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#d4894a';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Ears
+  ctx.fillStyle = '#f4a460';
+  for (let side of [-1, 1]) {
+    ctx.beginPath();
+    ctx.moveTo(side * size * 0.3, headY - size * 0.45);
+    ctx.lineTo(side * size * 0.55, headY - size * 0.75);
+    ctx.lineTo(side * size * 0.05, headY - size * 0.5);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    // Inner ear
+    ctx.fillStyle = '#ffb6c1';
+    ctx.beginPath();
+    ctx.moveTo(side * size * 0.32, headY - size * 0.48);
+    ctx.lineTo(side * size * 0.48, headY - size * 0.68);
+    ctx.lineTo(side * size * 0.15, headY - size * 0.52);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#f4a460';
+  }
+
+  // Eyes
+  if (blinking && frameCount % 60 < 5) {
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 2;
+    for (let side of [-1, 1]) {
+      ctx.beginPath();
+      ctx.moveTo(side * size * 0.2 - 5, headY);
+      ctx.lineTo(side * size * 0.2 + 5, headY);
+      ctx.stroke();
+    }
+  } else {
+    for (let side of [-1, 1]) {
+      ctx.fillStyle = '#4fc3f7';
+      ctx.beginPath();
+      ctx.arc(side * size * 0.2, headY, size * 0.12, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#111';
+      ctx.beginPath();
+      ctx.arc(side * size * 0.2 + 2, headY, size * 0.06, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.arc(side * size * 0.2 + 4, headY - 2, size * 0.03, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Nose
+  ctx.fillStyle = '#ff9999';
+  ctx.beginPath();
+  ctx.moveTo(0, headY + size * 0.08);
+  ctx.lineTo(-4, headY + size * 0.15);
+  ctx.lineTo(4, headY + size * 0.15);
+  ctx.closePath();
+  ctx.fill();
+
+  // Mouth
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(0, headY + size * 0.15);
+  ctx.quadraticCurveTo(-8, headY + size * 0.25, -12, headY + size * 0.18);
+  ctx.moveTo(0, headY + size * 0.15);
+  ctx.quadraticCurveTo(8, headY + size * 0.25, 12, headY + size * 0.18);
+  ctx.stroke();
+
+  // Whiskers
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 1;
+  for (let side of [-1, 1]) {
+    for (let i = -1; i <= 1; i++) {
+      ctx.beginPath();
+      ctx.moveTo(side * size * 0.25, headY + size * 0.12 + i * 4);
+      ctx.lineTo(side * (size * 0.7), headY + size * 0.05 + i * 8);
+      ctx.stroke();
+    }
+  }
+
+  // Diving helmet (bubble)
+  ctx.strokeStyle = 'rgba(150, 220, 255, 0.6)';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(0, headY, size * 0.65, 0, Math.PI * 2);
+  ctx.stroke();
+  // Helmet shine
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(-size * 0.15, headY - size * 0.3, size * 0.2, -0.5, 0.8);
+  ctx.stroke();
+
+  // Tail
+  ctx.strokeStyle = '#f4a460';
+  ctx.lineWidth = 6;
+  ctx.lineCap = 'round';
+  const tailWag = Math.sin(frameCount * 0.1) * 15;
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.8, size * 0.1);
+  ctx.quadraticCurveTo(-size * 1.2, -size * 0.3 + tailWag, -size * 1.0, -size * 0.7 + tailWag);
+  ctx.stroke();
+  ctx.strokeStyle = '#d4894a';
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(-size * 1.05, -size * 0.6 + tailWag);
+  ctx.lineTo(-size * 1.0, -size * 0.7 + tailWag);
+  ctx.stroke();
+
+  // Paws/flippers
+  ctx.fillStyle = '#f4a460';
+  for (let side of [-1, 1]) {
+    ctx.save();
+    ctx.translate(side * size * 0.6, size * 0.4);
+    ctx.rotate(Math.sin(frameCount * 0.15 + side) * 0.3);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, size * 0.3, size * 0.12, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#d4894a';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  ctx.restore();
+}
+
+function drawJellyfish(x, y, size, color, wobble) {
+  ctx.save();
+  ctx.translate(x, y);
+
+  // Bell/dome
+  ctx.fillStyle = color;
+  ctx.globalAlpha = 0.7;
+  ctx.beginPath();
+  ctx.arc(0, 0, size, Math.PI, 0);
+  ctx.quadraticCurveTo(size, size * 0.3, 0, size * 0.4);
+  ctx.quadraticCurveTo(-size, size * 0.3, -size, 0);
+  ctx.closePath();
+  ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // Inner glow
+  ctx.fillStyle = 'rgba(255,255,255,0.3)';
+  ctx.beginPath();
+  ctx.arc(0, -size * 0.2, size * 0.4, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Eyes
+  ctx.fillStyle = '#333';
+  ctx.beginPath();
+  ctx.arc(-size * 0.3, -size * 0.1, size * 0.12, 0, Math.PI * 2);
+  ctx.arc(size * 0.3, -size * 0.1, size * 0.12, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Tentacles
+  ctx.strokeStyle = color;
+  ctx.globalAlpha = 0.6;
+  ctx.lineWidth = 3;
+  for (let i = -2; i <= 2; i++) {
+    ctx.beginPath();
+    ctx.moveTo(i * size * 0.25, size * 0.3);
+    const wave = Math.sin(frameCount * 0.05 + wobble + i) * 10;
+    ctx.quadraticCurveTo(i * size * 0.25 + wave, size * 0.7, i * size * 0.25 - wave, size * 1.2);
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
+
+function drawFish(x, y, size) {
+  ctx.save();
+  ctx.translate(x, y);
+  const bob = Math.sin(frameCount * 0.08 + x) * 3;
+  ctx.translate(0, bob);
+
+  // Glow
+  ctx.fillStyle = 'rgba(255, 215, 0, 0.2)';
+  ctx.beginPath();
+  ctx.arc(0, 0, size * 1.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Fish body
+  ctx.fillStyle = '#ffd700';
+  ctx.beginPath();
+  ctx.ellipse(0, 0, size, size * 0.6, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#ffaa00';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Tail
+  ctx.fillStyle = '#ffaa00';
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.7, 0);
+  ctx.lineTo(-size * 1.3, -size * 0.5);
+  ctx.lineTo(-size * 1.3, size * 0.5);
+  ctx.closePath();
+  ctx.fill();
+
+  // Eye
+  ctx.fillStyle = '#333';
+  ctx.beginPath();
+  ctx.arc(size * 0.4, -size * 0.1, 3, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+function drawBubble(x, y, r) {
+  ctx.save();
+  ctx.strokeStyle = 'rgba(200, 230, 255, 0.5)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.fillStyle = 'rgba(200, 230, 255, 0.08)';
+  ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.beginPath();
+  ctx.arc(x - r * 0.3, y - r * 0.3, r * 0.2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawSeaweed(x, baseY, height, hue) {
+  ctx.save();
+  ctx.strokeStyle = `hsl(${hue}, 60%, 35%)`;
+  ctx.lineWidth = 8;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(x, baseY);
+  const segments = 5;
+  for (let i = 1; i <= segments; i++) {
+    const t = i / segments;
+    const wave = Math.sin(frameCount * 0.03 + x * 0.01 + i) * 15 * t;
+    ctx.lineTo(x + wave, baseY - height * t);
+  }
+  ctx.stroke();
+
+  // Leaves
+  ctx.fillStyle = `hsl(${hue}, 55%, 40%)`;
+  for (let i = 1; i < segments; i++) {
+    const t = i / segments;
+    const wave = Math.sin(frameCount * 0.03 + x * 0.01 + i) * 15 * t;
+    const lx = x + wave;
+    const ly = baseY - height * t;
+    ctx.beginPath();
+    ctx.ellipse(lx + 10, ly, 12, 5, 0.3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+// --- INIT LEVEL ---
+function initLevel() {
+  fishCollected = 0;
+  lives = 3;
+  cameraX = 0;
+  invincibleTimer = 0;
+  frameCount = 0;
+
+  cat = { x: 100, y: canvas.height / 2, vx: 0, vy: 0, size: 30, facingRight: true };
+
+  // Place 10 fish
+  fish = [];
+  for (let i = 0; i < 10; i++) {
+    fish.push({
+      x: 300 + i * 370,
+      y: 100 + Math.random() * (canvas.height - 300),
+      size: 15,
+      collected: false
+    });
+  }
+
+  // Place jellyfish
+  jellyfish = [];
+  const jellyColors = ['#ff69b4', '#9b59b6', '#3498db', '#e74c3c', '#1abc9c'];
+  for (let i = 0; i < 12; i++) {
+    const jx = 500 + i * 320 + Math.random() * 100;
+    jellyfish.push({
+      x: jx,
+      y: 150 + Math.random() * (canvas.height - 350),
+      size: 20 + Math.random() * 15,
+      color: jellyColors[i % jellyColors.length],
+      baseY: 0,
+      speed: 0.5 + Math.random() * 1,
+      wobble: Math.random() * Math.PI * 2,
+      moveRange: 60 + Math.random() * 80
+    });
+    jellyfish[jellyfish.length - 1].baseY = jellyfish[jellyfish.length - 1].y;
+  }
+
+  // Seaweed
+  seaweed = [];
+  for (let i = 0; i < 30; i++) {
+    seaweed.push({
+      x: i * 150 + Math.random() * 80,
+      height: 60 + Math.random() * 100,
+      hue: 100 + Math.random() * 40
+    });
+  }
+
+  // Bubbles
+  bubbles = [];
+  for (let i = 0; i < 40; i++) {
+    bubbles.push({
+      x: Math.random() * levelWidth,
+      y: Math.random() * canvas.height,
+      r: 2 + Math.random() * 8,
+      speed: 0.3 + Math.random() * 0.7
+    });
+  }
+
+  particles = [];
+}
+
+// --- UPDATE ---
+function update() {
+  if (gameState !== 'playing') return;
+  frameCount++;
+
+  // Cat movement - very forgiving, smooth
+  const accel = 0.5;
+  const maxSpeed = 4;
+  const friction = 0.92;
+
+  if (keys.left) { cat.vx -= accel; cat.facingRight = false; }
+  if (keys.right) { cat.vx += accel; cat.facingRight = true; }
+  if (keys.up) cat.vy -= accel;
+  if (keys.down) cat.vy += accel;
+
+  cat.vx *= friction;
+  cat.vy *= friction;
+  cat.vx = Math.max(-maxSpeed, Math.min(maxSpeed, cat.vx));
+  cat.vy = Math.max(-maxSpeed, Math.min(maxSpeed, cat.vy));
+
+  cat.x += cat.vx;
+  cat.y += cat.vy;
+
+  // Boundaries
+  const margin = cat.size;
+  if (cat.y < margin + 40) cat.y = margin + 40;
+  if (cat.y > canvas.height - margin - 100) cat.y = canvas.height - margin - 100;
+  if (cat.x < cameraX + margin) cat.x = cameraX + margin;
+
+  // Camera follows cat
+  const targetCamX = cat.x - canvas.width * 0.3;
+  cameraX += (targetCamX - cameraX) * 0.05;
+  if (cameraX < 0) cameraX = 0;
+  if (cameraX > levelWidth - canvas.width) cameraX = levelWidth - canvas.width;
+
+  // Invincibility timer
+  if (invincibleTimer > 0) invincibleTimer--;
+
+  // Fish collision
+  for (const f of fish) {
+    if (f.collected) continue;
+    const dx = cat.x - f.x;
+    const dy = cat.y - f.y;
+    if (Math.sqrt(dx * dx + dy * dy) < cat.size + f.size + 10) {
+      f.collected = true;
+      fishCollected++;
+      // Sparkles!
+      for (let i = 0; i < 8; i++) {
+        particles.push({
+          x: f.x, y: f.y,
+          vx: (Math.random() - 0.5) * 4,
+          vy: (Math.random() - 0.5) * 4,
+          life: 40,
+          color: '#ffd700'
+        });
+      }
+      if (fishCollected >= 10) {
+        gameState = 'win';
+        document.getElementById('win-screen').style.display = 'flex';
+        document.getElementById('hud').style.display = 'none';
+        document.getElementById('controls').style.display = 'none';
+      }
+    }
+  }
+
+  // Jellyfish collision & movement
+  for (const j of jellyfish) {
+    j.y = j.baseY + Math.sin(frameCount * 0.02 * j.speed + j.wobble) * j.moveRange;
+    if (invincibleTimer <= 0) {
+      const dx = cat.x - j.x;
+      const dy = cat.y - j.y;
+      if (Math.sqrt(dx * dx + dy * dy) < cat.size + j.size) {
+        lives--;
+        invincibleTimer = 90; // 1.5 sec at 60fps
+        // Knockback
+        cat.vx = (cat.x > j.x ? 4 : -4);
+        cat.vy = -2;
+        // Particles
+        for (let i = 0; i < 5; i++) {
+          particles.push({
+            x: cat.x, y: cat.y,
+            vx: (Math.random() - 0.5) * 3,
+            vy: (Math.random() - 0.5) * 3,
+            life: 30,
+            color: '#ff6b6b'
+          });
+        }
+        if (lives <= 0) {
+          // Respawn instead of game over (kid-friendly!)
+          lives = 3;
+          cat.x = Math.max(100, cameraX + 100);
+          cat.y = canvas.height / 2;
+        }
+      }
+    }
+  }
+
+  // Update bubbles
+  for (const b of bubbles) {
+    b.y -= b.speed;
+    b.x += Math.sin(frameCount * 0.02 + b.x) * 0.3;
+    if (b.y < -10) {
+      b.y = canvas.height + 10;
+      b.x = cameraX + Math.random() * canvas.width;
+    }
+  }
+
+  // Update particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+    if (p.life <= 0) particles.splice(i, 1);
+  }
+
+  // Update HUD
+  document.getElementById('fish-count').textContent = `🐟 ${fishCollected} / 10`;
+  let heartsStr = '';
+  for (let i = 0; i < 3; i++) heartsStr += i < lives ? '❤️' : '🖤';
+  document.getElementById('lives-count').textContent = heartsStr;
+}
+
+// --- DRAW ---
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Ocean gradient background
+  const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  grad.addColorStop(0, '#0a3d6b');
+  grad.addColorStop(0.5, '#0e5a8a');
+  grad.addColorStop(0.8, '#1a6b9e');
+  grad.addColorStop(1, '#0d3b5e');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Light rays from surface
+  ctx.save();
+  ctx.globalAlpha = 0.04;
+  for (let i = 0; i < 6; i++) {
+    const rx = (i * canvas.width / 5 - cameraX * 0.1) % (canvas.width + 200) - 100;
+    ctx.fillStyle = '#87ceeb';
+    ctx.beginPath();
+    ctx.moveTo(rx, 0);
+    ctx.lineTo(rx + 80, canvas.height);
+    ctx.lineTo(rx + 160, canvas.height);
+    ctx.lineTo(rx + 60, 0);
+    ctx.closePath();
+    ctx.fill();
+  }
+  ctx.restore();
+
+  if (gameState === 'title' || gameState === 'win') return;
+
+  ctx.save();
+  ctx.translate(-cameraX, 0);
+
+  // Sandy bottom
+  const sandGrad = ctx.createLinearGradient(0, canvas.height - 60, 0, canvas.height);
+  sandGrad.addColorStop(0, '#c2a366');
+  sandGrad.addColorStop(1, '#a08050');
+  ctx.fillStyle = sandGrad;
+  ctx.fillRect(cameraX, canvas.height - 60, canvas.width, 60);
+
+  // Sand dots
+  ctx.fillStyle = '#b09055';
+  for (let i = 0; i < 20; i++) {
+    const sx = cameraX + (i * 53 + 10) % canvas.width;
+    ctx.beginPath();
+    ctx.arc(sx, canvas.height - 30 + Math.sin(i * 2) * 10, 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Seaweed
+  for (const s of seaweed) {
+    if (s.x > cameraX - 100 && s.x < cameraX + canvas.width + 100) {
+      drawSeaweed(s.x, canvas.height - 60, s.height, s.hue);
+    }
+  }
+
+  // Bubbles
+  for (const b of bubbles) {
+    drawBubble(b.x, b.y, b.r);
+  }
+
+  // Fish
+  for (const f of fish) {
+    if (!f.collected && f.x > cameraX - 50 && f.x < cameraX + canvas.width + 50) {
+      drawFish(f.x, f.y, f.size);
+    }
+  }
+
+  // Jellyfish
+  for (const j of jellyfish) {
+    if (j.x > cameraX - 80 && j.x < cameraX + canvas.width + 80) {
+      drawJellyfish(j.x, j.y, j.size, j.color, j.wobble);
+    }
+  }
+
+  // Cat (flash if invincible)
+  if (invincibleTimer <= 0 || Math.floor(invincibleTimer / 5) % 2 === 0) {
+    drawCat(cat.x, cat.y, cat.size, !cat.facingRight, true);
+  }
+
+  // Particles
+  for (const p of particles) {
+    ctx.globalAlpha = p.life / 40;
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+
+  // Goal marker at end
+  const goalX = levelWidth - 100;
+  ctx.fillStyle = 'rgba(255, 215, 0, 0.15)';
+  ctx.beginPath();
+  ctx.arc(goalX, canvas.height / 2, 60 + Math.sin(frameCount * 0.05) * 10, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.font = `${40 + Math.sin(frameCount * 0.05) * 5}px serif`;
+  ctx.textAlign = 'center';
+  ctx.fillText('⭐', goalX, canvas.height / 2 + 10);
+
+  ctx.restore();
+
+  // Name tag
+  ctx.fillStyle = 'rgba(0,0,0,0.3)';
+  ctx.roundRect ? ctx.roundRect(cat.x - cameraX - 65, cat.y - cat.size - 60, 130, 22, 8) : ctx.fillRect(cat.x - cameraX - 65, cat.y - cat.size - 60, 130, 22);
+  ctx.fill();
+  ctx.font = '14px "Comic Sans MS", cursive';
+  ctx.fillStyle = '#ffdd44';
+  ctx.textAlign = 'center';
+  ctx.fillText('Meow Meow the Whisker', cat.x - cameraX, cat.y - cat.size - 44);
+}
+
+// --- GAME LOOP ---
+function gameLoop() {
+  update();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+// --- CONTROLS ---
+// Keyboard
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = true;
+  if (e.key === 'ArrowRight' || e.key === 'd') keys.right = true;
+  if (e.key === 'ArrowUp' || e.key === 'w') keys.up = true;
+  if (e.key === 'ArrowDown' || e.key === 's') keys.down = true;
+});
+window.addEventListener('keyup', e => {
+  if (e.key === 'ArrowLeft' || e.key === 'a') keys.left = false;
+  if (e.key === 'ArrowRight' || e.key === 'd') keys.right = false;
+  if (e.key === 'ArrowUp' || e.key === 'w') keys.up = false;
+  if (e.key === 'ArrowDown' || e.key === 's') keys.down = false;
+});
+
+// Touch buttons
+function setupBtn(id, key) {
+  const btn = document.getElementById(id);
+  btn.addEventListener('touchstart', e => { e.preventDefault(); keys[key] = true; });
+  btn.addEventListener('touchend', e => { e.preventDefault(); keys[key] = false; });
+  btn.addEventListener('touchcancel', e => { e.preventDefault(); keys[key] = false; });
+  btn.addEventListener('mousedown', e => { keys[key] = true; });
+  btn.addEventListener('mouseup', e => { keys[key] = false; });
+}
+setupBtn('btn-left', 'left');
+setupBtn('btn-right', 'right');
+setupBtn('btn-up', 'up');
+setupBtn('btn-down', 'down');
+
+// Multi-touch support - allow pressing two buttons at once
+document.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+
+// Start / Replay
+document.getElementById('play-btn').addEventListener('click', () => {
+  document.getElementById('title-screen').style.display = 'none';
+  document.getElementById('hud').style.display = 'flex';
+  document.getElementById('controls').style.display = 'flex';
+  gameState = 'playing';
+  initLevel();
+});
+
+document.getElementById('replay-btn').addEventListener('click', () => {
+  document.getElementById('win-screen').style.display = 'none';
+  document.getElementById('hud').style.display = 'flex';
+  document.getElementById('controls').style.display = 'flex';
+  gameState = 'playing';
+  initLevel();
+});
+
+// Start loop
+gameLoop();
+</script>
+</body>
+</html>
