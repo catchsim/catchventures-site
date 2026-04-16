@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catch Ventures — AI Platforms for Cybersecurity & Financial Intelligence</title>
-<meta name="description" content="Catch Ventures builds AI platforms that help organizations and investors catch risk early and opportunities sooner. CatchEquities is our financial intelligence SaaS. CatchSim is an independent cybersecurity research initiative.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Catch Ventures — AI Platforms for Financial Intelligence</title>
+<meta name="description" content="Catch Ventures builds AI platforms for financial intelligence. CatchEquities is our flagship product — AI-powered signal detection for equities markets.">
 <meta property="og:title" content="Catch Ventures — Catch Risk Early. Catch Opportunity Sooner.">
-<meta property="og:description" content="AI platforms for cybersecurity and financial intelligence. Building high-trust software that helps organizations identify what matters before others do.">
+<meta property="og:description" content="AI platforms for financial intelligence. Building high-trust software that helps investors identify what matters before others do.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://catchventures.ca">
 <meta property="og:image" content="https://catchventures.ca/assets/logo-web.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Catch Ventures — Catch Risk Early. Catch Opportunity Sooner.">
-<meta name="twitter:description" content="AI platforms for cybersecurity and financial intelligence.">
+<meta name="twitter:description" content="AI platforms for financial intelligence.">
 <meta name="twitter:image" content="https://catchventures.ca/assets/logo-web.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,18 +26,13 @@
   "@type": "Organization",
   "name": "Catch Ventures",
   "url": "https://catchventures.ca",
-  "description": "AI platforms for cybersecurity and financial intelligence"
+  "description": "AI platforms for financial intelligence"
 }
 </script>
 <link rel="icon" href="./assets/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon-192.png">
 <style>
-  /* ============================================================
-     Catch Ventures — Dark Design System Override
-     Forces dark-native palette across the whole page.
-     ============================================================ */
-
   :root,
   [data-theme="dark"],
   [data-theme="light"] {
@@ -83,6 +79,8 @@
     --radius-xl: 14px;
   }
 
+  a { color: inherit; text-decoration: none; }
+
   body {
     background: #0d1117;
     color: #e6edf3;
@@ -116,16 +114,6 @@
   }
   .nav__links a:hover { color: #e6edf3 !important; }
   .nav__links a.active { color: #29b6d4 !important; }
-  .theme-toggle {
-    color: #8b949e !important;
-    background: transparent !important;
-    border: 1px solid #30363d !important;
-    border-radius: 8px !important;
-  }
-  .theme-toggle:hover {
-    color: #e6edf3 !important;
-    background: rgba(41,182,212,0.08) !important;
-  }
   .nav__mobile-menu {
     background: #161b22 !important;
     border-top: 1px solid #21262d !important;
@@ -173,7 +161,7 @@
   }
 
   /* Hero */
-  .hero, .page-hero, .page-hero--blue {
+  .hero, .page-hero {
     background: #0d1117 !important;
     border-bottom: 1px solid #21262d !important;
   }
@@ -203,14 +191,6 @@
     font-size: 15px !important;
     line-height: 1.65 !important;
   }
-
-  /* Breadcrumb */
-  .breadcrumb a, .breadcrumb span:not(.breadcrumb__sep) {
-    color: #8b949e !important;
-    font-size: 12px !important;
-  }
-  .breadcrumb a:hover { color: #29b6d4 !important; }
-  .breadcrumb__sep { color: #484f58 !important; }
 
   /* Ticker band */
   .ticker-band {
@@ -249,12 +229,7 @@
     line-height: 1.65 !important;
   }
 
-  /* Product cards */
-  .products-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-    gap: 20px !important;
-  }
+  /* Product card */
   .product-card {
     background: #161b22 !important;
     border: 1px solid #30363d !important;
@@ -267,8 +242,6 @@
     transform: none !important;
     box-shadow: none !important;
   }
-  .product-card--equities:hover { border-color: rgba(41,182,212,0.4) !important; }
-  .product-card--sim:hover { border-color: rgba(99,102,241,0.4) !important; }
   .product-card__glow { display: none !important; }
   .product-card__badge {
     font-family: 'Inter', system-ui, sans-serif !important;
@@ -284,7 +257,6 @@
     letter-spacing: -0.02em !important;
   }
   .product-card__title span { color: #29b6d4 !important; }
-  .product-card--sim .product-card__title span { color: #818cf8 !important; }
   .product-card__desc {
     color: #8b949e !important;
     font-size: 13px !important;
@@ -294,7 +266,6 @@
     color: #8b949e !important;
     font-size: 12px !important;
   }
-  .product-card__features li::before { color: #29b6d4 !important; }
   .product-card__cta {
     color: #29b6d4 !important;
     font-size: 13px !important;
@@ -379,7 +350,7 @@
     border-top: 1px solid #21262d !important;
     border-bottom: 1px solid #21262d !important;
   }
-  .contact-band__inner, .sim-contact-band .sim-contact-band__inner {
+  .contact-band__inner {
     background: #1c2333 !important;
     border: 1px solid #30363d !important;
     border-radius: 16px !important;
@@ -395,59 +366,6 @@
     letter-spacing: -0.02em !important;
   }
   .contact-band__sub { color: #8b949e !important; font-size: 14px !important; }
-  .sim-contact-band {
-    background: #161b22 !important;
-    border-top: 1px solid #21262d !important;
-    border-bottom: 1px solid #21262d !important;
-  }
-  .sim-contact-band::before { display: none !important; }
-
-  /* Research badge */
-  .research-badge {
-    background: rgba(99,102,241,0.1) !important;
-    color: #818cf8 !important;
-    border: 1px solid rgba(99,102,241,0.25) !important;
-    font-size: 10px !important;
-    font-weight: 600 !important;
-  }
-
-  /* CatchSim feature tiles */
-  .sim-feature-tile {
-    background: #161b22 !important;
-    border: 1px solid #30363d !important;
-    border-radius: 12px !important;
-    box-shadow: none !important;
-    transition: border-color 180ms ease !important;
-  }
-  .sim-feature-tile:hover {
-    border-color: rgba(99,102,241,0.4) !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
-  .sim-feature-tile__icon {
-    background: rgba(99,102,241,0.1) !important;
-    color: #818cf8 !important;
-    border-radius: 8px !important;
-  }
-  .sim-feature-tile__title {
-    color: #e6edf3 !important;
-    font-family: 'Inter', system-ui, sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 14px !important;
-  }
-  .sim-feature-tile__body { color: #8b949e !important; font-size: 13px !important; }
-
-  /* CatchSim process steps */
-  .sim-process-step {
-    background: #161b22 !important;
-    border: 1px solid #30363d !important;
-    border-radius: 12px !important;
-    box-shadow: none !important;
-  }
-  .sim-process-step:hover { border-color: rgba(99,102,241,0.4) !important; box-shadow: none !important; }
-  .sim-process-step__num { color: #818cf8 !important; font-family: 'JetBrains Mono', monospace !important; }
-  .sim-process-step__title { color: #e6edf3 !important; font-family: 'Inter', system-ui, sans-serif !important; font-weight: 600 !important; }
-  .sim-process-step__body { color: #8b949e !important; font-size: 13px !important; }
 
   /* Footer */
   .footer { background: #0d1117 !important; border-top: 1px solid #21262d !important; }
@@ -462,224 +380,10 @@
   .footer__links a:hover { color: #29b6d4 !important; }
   .footer__tagline { color: #484f58 !important; font-size: 13px !important; }
   .footer__copy { color: #484f58 !important; font-size: 12px !important; }
-  .footer__attribution a { color: #484f58 !important; font-size: 12px !important; }
-  .footer__attribution a:hover { color: #29b6d4 !important; }
+  .footer__social-link { color: #8b949e; transition: color 0.2s; }
+  .footer__social-link:hover { color: #29b6d4; }
 
-  /* Fade-in — override scroll-driven to simple load animation */
-  .fade-in {
-    opacity: 1 !important;
-    animation: cv-fadein 0.5s ease both !important;
-    animation-timeline: unset !important;
-  }
-  @keyframes cv-fadein {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── CatchEquities Feature Section ── */
-  .ceq-feature {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: center;
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    padding: 48px;
-    margin-bottom: 24px;
-  }
-  .ceq-feature__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #29b6d4;
-    background: rgba(41,182,212,0.1);
-    border: 1px solid rgba(41,182,212,0.25);
-    border-radius: 6px;
-    padding: 4px 10px;
-    margin-bottom: 20px;
-  }
-  .ceq-feature__title {
-    font-family: 'Inter', sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: #e6edf3;
-    line-height: 1.2;
-    margin: 0 0 16px 0;
-  }
-  .ceq-feature__desc {
-    font-size: 15px;
-    color: #8b949e;
-    line-height: 1.7;
-    margin: 0 0 24px 0;
-  }
-  .ceq-feature__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #29b6d4;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(41,182,212,0.3);
-    padding-bottom: 2px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .ceq-feature__link:hover { border-color: #29b6d4; color: #5ecfdf; }
-
-  /* GUI mock */
-  .ceq-feature__gui {
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #30363d;
-    box-shadow: 0 0 40px rgba(41,182,212,0.07);
-  }
-  .ceq-gui__chrome {
-    background: #1c2333;
-    border-bottom: 1px solid #30363d;
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .ceq-gui__dots {
-    display: flex;
-    gap: 6px;
-  }
-  .ceq-gui__dots span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: block;
-  }
-  .ceq-gui__tab {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: #e6edf3;
-  }
-  .ceq-gui__body {
-    background: #0d1117;
-    padding: 16px;
-    position: relative;
-  }
-  .ceq-gui__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-  .ceq-gui__header-title {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: #484f58;
-  }
-  .ceq-gui__live {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #22c55e;
-  }
-  .ceq-gui__live-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #22c55e;
-    animation: ceq-pulse 1.8s infinite;
-  }
-  @keyframes ceq-pulse {
-    0%,100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-  .ceq-gui__cards {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .ceq-signal-card {
-    background: #1c2333;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 12px 14px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .ceq-signal__score {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 22px;
-    font-weight: 700;
-    min-width: 40px;
-    text-align: center;
-    line-height: 1;
-  }
-  .ceq-signal__score--high { color: #29b6d4; }
-  .ceq-signal__score--mid  { color: #f59e0b; }
-  .ceq-signal__info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .ceq-signal__ticker {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: #e6edf3;
-  }
-  .ceq-signal__type {
-    font-size: 11px;
-    color: #8b949e;
-  }
-  .ceq-signal__bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    margin-top: 4px;
-  }
-  .ceq-signal__bars span {
-    width: 4px;
-    border-radius: 2px;
-    display: block;
-  }
-  .ceq-signal__dir {
-    font-size: 12px;
-    font-weight: 700;
-    white-space: nowrap;
-    padding: 4px 8px;
-    border-radius: 6px;
-  }
-  .ceq-signal__dir--bull { color: #22c55e; background: rgba(34,197,94,0.1); }
-  .ceq-signal__dir--bear { color: #ef4444; background: rgba(239,68,68,0.1); }
-  .ceq-gui__fade {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 72px;
-    background: linear-gradient(to bottom, transparent, #0d1117);
-    pointer-events: none;
-  }
-
-  @media (max-width: 768px) {
-    .ceq-feature {
-      grid-template-columns: 1fr;
-      gap: 32px;
-      padding: 28px;
-    }
-  }
-
-
-  /* ── Email Capture ── */
+  /* Email Capture */
   .cv-email-capture {
     width: 100%;
     max-width: 480px;
@@ -737,37 +441,16 @@
     .cv-email-capture button { justify-content: center; border-radius: 0 0 8px 8px; }
   }
 
-
-  /* CatchEquities icon tile + wordmark */
-  .ceq-feature__icon-wrap {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
+  /* Fade-in */
+  .fade-in {
+    opacity: 1 !important;
+    animation: cv-fadein 0.5s ease both !important;
+    animation-timeline: unset !important;
   }
-  .ceq-feature__icon-tile {
-    width: 56px;
-    height: 56px;
-    background: #1c2333;
-    border: 1px solid #30363d;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 0 18px rgba(41,182,212,0.1);
+  @keyframes cv-fadein {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-  .ceq-feature__wordmark {
-    font-family: 'Inter', sans-serif;
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: #e6edf3;
-    margin: 0;
-    line-height: 1;
-  }
-  .ceq-feature__wordmark span { color: #29b6d4; }
-
 </style>
 </head>
 <body>
@@ -816,8 +499,7 @@
 
       <ul class="nav__links" role="list">
         <li><a href="./index.html" class="active">Home</a></li>
-        <li><a href="./catchequities.html">CatchEquities</a></li>
-        <li><a href="./catchsim.html">CatchSim</a></li>
+        <li><a href="#products">Products</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -829,8 +511,7 @@
     <!-- Mobile menu -->
     <div class="nav__mobile-menu" id="mobileMenu" role="navigation">
       <a href="./index.html">Home</a>
-      <a href="./catchequities.html">CatchEquities</a>
-      <a href="./catchsim.html">CatchSim</a>
+      <a href="#products">Products</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -848,10 +529,8 @@
         </pattern>
       </defs>
       <rect width="520" height="400" fill="url(#grid)" style="color: var(--color-primary)"/>
-      <!-- Signal lines -->
       <polyline points="0,280 60,260 120,200 180,220 240,140 300,160 360,80 420,100 520,40" fill="none" stroke="var(--color-primary)" stroke-width="1.5" opacity="0.6"/>
       <polyline points="0,320 80,310 160,290 240,270 300,240 380,200 460,190 520,180" fill="none" stroke="var(--color-blue)" stroke-width="1" opacity="0.4"/>
-      <!-- Signal dots -->
       <circle cx="240" cy="140" r="4" fill="var(--color-primary)" opacity="0.8"/>
       <circle cx="360" cy="80" r="4" fill="var(--color-primary)" opacity="0.8"/>
       <circle cx="120" cy="200" r="3" fill="var(--color-primary)" opacity="0.5"/>
@@ -859,21 +538,21 @@
 
     <div class="container">
       <div class="hero__content">
-        <div class="hero__eyebrow">AI Platforms for Risk &amp; Intelligence</div>
+        <div class="hero__eyebrow">AI Platforms for Financial Intelligence</div>
         <h1 class="hero__title">
           Build high-trust software.<br>
           <span class="accent">Catch what matters first.</span>
         </h1>
         <p class="hero__subtitle">
-          Catch Ventures develops AI platforms for cybersecurity and financial intelligence — helping organizations and investors identify risk early and seize opportunities before others do.
+          Catch Ventures develops AI platforms for financial intelligence — helping investors identify risk early and seize opportunities before others do.
         </p>
         <div class="hero__cta">
-          <a href="./catchequities.html" class="btn btn--primary">
-            Explore CatchEquities
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a href="https://www.catchequities.com" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+            Visit CatchEquities
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
-          <a href="./catchsim.html" class="btn btn--ghost">
-            Discover CatchSim
+          <a href="#about" class="btn btn--ghost">
+            About Us
           </a>
         </div>
       </div>
@@ -884,20 +563,16 @@
   <div class="ticker-band" aria-hidden="true">
     <div class="ticker-track">
       <span class="ticker-item"><span class="dot"></span>Financial Intelligence</span>
-      <span class="ticker-item"><span class="dot"></span>Cybersecurity Simulation</span>
       <span class="ticker-item"><span class="dot"></span>AI-Driven Signal Detection</span>
       <span class="ticker-item"><span class="dot"></span>Risk Identification</span>
       <span class="ticker-item"><span class="dot"></span>Market Anomaly Detection</span>
-      <span class="ticker-item"><span class="dot"></span>Resilience Validation</span>
       <span class="ticker-item"><span class="dot"></span>High-Trust Software</span>
       <span class="ticker-item"><span class="dot"></span>Catch Risk Early</span>
       <!-- Duplicate for seamless loop -->
       <span class="ticker-item"><span class="dot"></span>Financial Intelligence</span>
-      <span class="ticker-item"><span class="dot"></span>Cybersecurity Simulation</span>
       <span class="ticker-item"><span class="dot"></span>AI-Driven Signal Detection</span>
       <span class="ticker-item"><span class="dot"></span>Risk Identification</span>
       <span class="ticker-item"><span class="dot"></span>Market Anomaly Detection</span>
-      <span class="ticker-item"><span class="dot"></span>Resilience Validation</span>
       <span class="ticker-item"><span class="dot"></span>High-Trust Software</span>
       <span class="ticker-item"><span class="dot"></span>Catch Risk Early</span>
     </div>
@@ -907,160 +582,35 @@
   <section class="section" id="products">
     <div class="container">
       <div class="section__header fade-in">
-        <div class="section__eyebrow">Our Platforms</div>
-        <h2 class="section__title">Two platforms.<br>One unified mission.</h2>
-        <p class="section__body">AI-powered tools built for those who need to know first — whether defending networks or navigating markets.</p>
+        <div class="section__eyebrow">Our Platform</div>
+        <h2 class="section__title">CatchEquities</h2>
+        <p class="section__body">AI-powered signal intelligence for equities markets. A proprietary scoring engine that monitors thousands of tickers in real time — surfacing high-confidence trade signals before you would have spotted them manually.</p>
       </div>
 
-      <div class="products-grid">
-        <!-- CatchEquities Feature Card -->
-        <div class="ceq-feature fade-in">
-          <!-- Left: copy -->
-          <div class="ceq-feature__copy">
-            <!-- Icon tile + title — matches CatchSim style -->
-            <div class="ceq-feature__icon-wrap">
-              <div class="ceq-feature__icon-tile">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#29b6d4" stroke-width="1.8" aria-hidden="true">
-                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-                  <polyline points="16 7 22 7 22 13"/>
-                </svg>
-              </div>
-              <h3 class="ceq-feature__wordmark">Catch<span>Equities</span></h3>
-            </div>
-            <div class="ceq-feature__badge">
-              <svg width="7" height="7" viewBox="0 0 10 10" fill="#29b6d4"><circle cx="5" cy="5" r="5"/></svg>
-              Beta — Invite Only
-            </div>
-            <h3 class="ceq-feature__title">AI Signal Intelligence<br>for Equities</h3>
-            <p class="ceq-feature__desc">A proprietary scoring engine that monitors thousands of tickers in real time — surfacing high-confidence trade signals ranked 0–100 before you would have spotted them manually.</p>
-            <a href="https://www.catchequities.com" target="_blank" rel="noopener noreferrer" class="ceq-feature__link">
-              catchequities.com
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
-            </a>
-          </div>
-          <!-- Right: mock GUI -->
-          <div class="ceq-feature__gui">
-            <!-- Browser chrome -->
-            <div class="ceq-gui__chrome">
-              <div class="ceq-gui__dots">
-                <span style="background:#ef4444"></span>
-                <span style="background:#f59e0b"></span>
-                <span style="background:#22c55e"></span>
-              </div>
-              <div class="ceq-gui__tab">CatchEquities</div>
-            </div>
-            <!-- Window body -->
-            <div class="ceq-gui__body">
-              <!-- Header row -->
-              <div class="ceq-gui__header">
-                <span class="ceq-gui__header-title">Signal Feed</span>
-                <span class="ceq-gui__live"><span class="ceq-gui__live-dot"></span>Live</span>
-              </div>
-              <!-- Signal cards -->
-              <div class="ceq-gui__cards">
-
-                <!-- Card 1: NVDA 91 -->
-                <div class="ceq-signal-card">
-                  <div class="ceq-signal__score ceq-signal__score--high">91</div>
-                  <div class="ceq-signal__info">
-                    <div class="ceq-signal__ticker">NVDA</div>
-                    <div class="ceq-signal__type">Insider Confidence</div>
-                    <div class="ceq-signal__bars">
-                      <span style="height:14px;background:#29b6d4"></span>
-                      <span style="height:18px;background:#29b6d4"></span>
-                      <span style="height:10px;background:#30363d"></span>
-                      <span style="height:16px;background:#29b6d4"></span>
-                      <span style="height:12px;background:#30363d"></span>
-                    </div>
-                  </div>
-                  <div class="ceq-signal__dir ceq-signal__dir--bull">↑ Bullish</div>
-                </div>
-
-                <!-- Card 2: META 87 -->
-                <div class="ceq-signal-card">
-                  <div class="ceq-signal__score ceq-signal__score--high">87</div>
-                  <div class="ceq-signal__info">
-                    <div class="ceq-signal__ticker">META</div>
-                    <div class="ceq-signal__type">Momentum Burst</div>
-                    <div class="ceq-signal__bars">
-                      <span style="height:16px;background:#29b6d4"></span>
-                      <span style="height:20px;background:#29b6d4"></span>
-                      <span style="height:14px;background:#29b6d4"></span>
-                      <span style="height:10px;background:#30363d"></span>
-                      <span style="height:18px;background:#29b6d4"></span>
-                    </div>
-                  </div>
-                  <div class="ceq-signal__dir ceq-signal__dir--bull">↑ Bullish</div>
-                </div>
-
-                <!-- Card 3: TSLA 74 -->
-                <div class="ceq-signal-card">
-                  <div class="ceq-signal__score ceq-signal__score--mid">74</div>
-                  <div class="ceq-signal__info">
-                    <div class="ceq-signal__ticker">TSLA</div>
-                    <div class="ceq-signal__type">Mean Reversion</div>
-                    <div class="ceq-signal__bars">
-                      <span style="height:12px;background:#f59e0b"></span>
-                      <span style="height:16px;background:#f59e0b"></span>
-                      <span style="height:10px;background:#30363d"></span>
-                      <span style="height:14px;background:#f59e0b"></span>
-                      <span style="height:8px;background:#30363d"></span>
-                    </div>
-                  </div>
-                  <div class="ceq-signal__dir ceq-signal__dir--bear">↓ Bearish</div>
-                </div>
-
-                <!-- Card 4: AMZN 82 -->
-                <div class="ceq-signal-card">
-                  <div class="ceq-signal__score ceq-signal__score--high">82</div>
-                  <div class="ceq-signal__info">
-                    <div class="ceq-signal__ticker">AMZN</div>
-                    <div class="ceq-signal__type">Volume Anomaly</div>
-                    <div class="ceq-signal__bars">
-                      <span style="height:18px;background:#29b6d4"></span>
-                      <span style="height:12px;background:#30363d"></span>
-                      <span style="height:16px;background:#29b6d4"></span>
-                      <span style="height:20px;background:#29b6d4"></span>
-                      <span style="height:14px;background:#29b6d4"></span>
-                    </div>
-                  </div>
-                  <div class="ceq-signal__dir ceq-signal__dir--bull">↑ Bullish</div>
-                </div>
-
-              </div>
-              <!-- Fade overlay -->
-              <div class="ceq-gui__fade"></div>
-            </div>
-          </div>
+      <a href="https://www.catchequities.com" target="_blank" rel="noopener noreferrer" class="product-card product-card--equities fade-in" style="max-width: 560px;">
+        <div class="product-card__glow"></div>
+        <div class="product-card__badge" style="background: var(--color-primary-highlight); color: var(--color-primary);">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+          Flagship Product
         </div>
-
-        <!-- CatchSim Card -->
-        <a href="./catchsim.html" class="product-card product-card--sim fade-in">
-          <div class="product-card__glow"></div>
-          <div class="product-card__badge" style="background: var(--color-blue-highlight); color: var(--color-blue);">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-            Research Platform
-          </div>
-          <div class="product-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <polyline points="9 12 11 14 15 10"/>
-            </svg>
-          </div>
-          <h3 class="product-card__title">Catch<span>Sim</span></h3>
-          <p class="product-card__desc">Cybersecurity simulation platform for validating detection, uncovering gaps, and strengthening resilience. Reduce risk through controlled, intelligent simulation.</p>
-          <ul class="product-card__features" role="list">
-            <li>Detection validation against realistic attack scenarios</li>
-            <li>Gap analysis to surface blind spots before adversaries do</li>
-            <li>Resilience testing through controlled simulation</li>
-            <li>Continuous improvement cycle for security posture</li>
-          </ul>
-          <span class="product-card__cta" style="color: var(--color-blue)">
-            Discover CatchSim
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </a>
-      </div>
+        <div class="product-card__icon" style="background: var(--color-primary-highlight); color: var(--color-primary);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <h3 class="product-card__title">Catch<span>Equities</span></h3>
+        <p class="product-card__desc">AI signal intelligence for equities. Real-time scoring, anomaly detection, and decision support — built for investors who need to act before consensus forms.</p>
+        <ul class="product-card__features" role="list">
+          <li>Proprietary 0-100 signal scoring across thousands of tickers</li>
+          <li>Real-time anomaly detection and momentum analysis</li>
+          <li>Explainable, verifiable AI outputs</li>
+        </ul>
+        <span class="product-card__cta">
+          Visit catchequities.com
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </span>
+      </a>
     </div>
   </section>
 
@@ -1069,7 +619,7 @@
     <div class="container">
       <div class="vision-band__inner">
         <blockquote class="vision-band__quote">
-          "Build high-trust software that helps<br>organizations and investors <span class="highlight">identify what matters<br>before others do.</span>"
+          "Build high-trust software that helps<br>investors <span class="highlight">identify what matters<br>before others do.</span>"
         </blockquote>
         <p class="vision-band__sub">The Catch Ventures mission — fusing AI precision with deep domain intelligence.</p>
       </div>
@@ -1084,7 +634,7 @@
           <div class="section__eyebrow">About Catch Ventures</div>
           <h2 class="feature-split__title">Intelligence platforms built for those who can't afford to be late.</h2>
           <p class="feature-split__body">
-            Catch Ventures builds AI-first platforms at the intersection of financial markets and cybersecurity. Our philosophy is simple: the organizations and investors who act on reliable intelligence early are the ones that win.
+            Catch Ventures builds AI-first platforms for financial markets. Our philosophy is simple: the investors who act on reliable intelligence early are the ones that win.
           </p>
           <ul class="feature-list" role="list">
             <li>
@@ -1099,49 +649,35 @@
               <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
               Deployed securely on cloud-native AWS infrastructure
             </li>
-            <li>
-              <svg class="feature-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Dual-domain expertise: financial markets &amp; cybersecurity
-            </li>
           </ul>
         </div>
         <div class="feature-split__visual fade-in" aria-hidden="true">
           <div class="signal-display">
-            <!-- Inline SVG visualization — CatchEquities Opportunity Radar style -->
             <svg viewBox="0 0 400 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <!-- Glow filter for signal line -->
                 <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                   <feGaussianBlur stdDeviation="4" result="blur"/>
                   <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
-                <!-- Dot glow -->
                 <filter id="dotGlow" x="-100%" y="-100%" width="300%" height="300%">
                   <feGaussianBlur stdDeviation="5" result="blur"/>
                   <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
-                <!-- Area gradient — cyan fade down -->
                 <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stop-color="#29b6d4" stop-opacity="0.18"/>
                   <stop offset="100%" stop-color="#29b6d4" stop-opacity="0.01"/>
                 </linearGradient>
-                <!-- Line gradient — teal → cyan → indigo at breakout -->
                 <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%"   stop-color="#1a8fa8" stop-opacity="0.6"/>
                   <stop offset="55%"  stop-color="#29b6d4" stop-opacity="1"/>
                   <stop offset="80%"  stop-color="#29b6d4" stop-opacity="1"/>
                   <stop offset="100%" stop-color="#818cf8" stop-opacity="0.9"/>
                 </linearGradient>
-                <!-- Clip to chart area -->
                 <clipPath id="chartClip">
                   <rect x="0" y="0" width="400" height="270"/>
                 </clipPath>
               </defs>
-
-              <!-- Background -->
               <rect width="400" height="300" fill="#0d1117" rx="0"/>
-
-              <!-- Subtle grid lines -->
               <g stroke="#e6edf3" stroke-width="0.5" opacity="0.05">
                 <line x1="0" y1="60"  x2="400" y2="60"/>
                 <line x1="0" y1="120" x2="400" y2="120"/>
@@ -1152,69 +688,32 @@
                 <line x1="240" y1="0" x2="240" y2="270"/>
                 <line x1="320" y1="0" x2="320" y2="270"/>
               </g>
-
-              <!-- Y-axis price labels -->
-              <text x="6" y="63"  font-size="8" fill="#484f58" font-family="JetBrains Mono, monospace">HIGH</text>
-              <text x="6" y="123" font-size="8" fill="#484f58" font-family="JetBrains Mono, monospace">MID</text>
-              <text x="6" y="183" font-size="8" fill="#484f58" font-family="JetBrains Mono, monospace">LOW</text>
-
-              <!-- Dashed baseline (secondary correlated asset, purple) -->
-              <polyline
-                points="0,230 40,228 80,232 120,226 160,224 200,220 240,215 280,218 320,210 360,205 400,198"
-                fill="none" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.5"
-                clip-path="url(#chartClip)"/>
-
-              <!-- Area fill under main price line -->
               <polygon
                 points="0,210 30,205 60,195 90,185 110,190 140,165 165,148 190,132 210,118 230,100 248,86 260,75 272,92 285,138 300,145 315,115 330,95 348,70 375,50 400,38 400,270 0,270"
                 fill="url(#areaGrad)"
                 clip-path="url(#chartClip)"/>
-
-              <!-- Main price line — CatchEquities cyan, thick, glowing -->
               <polyline
                 points="0,210 30,205 60,195 90,185 110,190 140,165 165,148 190,132 210,118 230,100 248,86 260,75 272,92 285,138 300,145 315,115 330,95 348,70 375,50 400,38"
                 fill="none" stroke="url(#lineGrad2)" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"
                 filter="url(#glow)" clip-path="url(#chartClip)"/>
-
-              <!-- Signal detection dot 1 — first breakout point -->
-              <!-- Outer pulse ring -->
               <circle cx="248" cy="86" r="10" fill="none" stroke="#29b6d4" stroke-width="1" opacity="0.3"/>
               <circle cx="248" cy="86" r="6"  fill="none" stroke="#29b6d4" stroke-width="1" opacity="0.5"/>
-              <!-- Filled dot -->
               <circle cx="248" cy="86" r="4"  fill="#29b6d4" filter="url(#dotGlow)"/>
-
-              <!-- Signal detection dot 2 — second breakout continuation -->
               <circle cx="348" cy="70" r="10" fill="none" stroke="#29b6d4" stroke-width="1" opacity="0.3"/>
               <circle cx="348" cy="70" r="6"  fill="none" stroke="#29b6d4" stroke-width="1" opacity="0.5"/>
               <circle cx="348" cy="70" r="4"  fill="#29b6d4" filter="url(#dotGlow)"/>
-
-              <!-- SIGNAL DETECTED tooltip — pill style -->
               <rect x="156" y="55" width="134" height="24" rx="6"
                 fill="#161b22" stroke="#29b6d4" stroke-width="1.2"/>
               <text x="223" y="71" text-anchor="middle"
                 font-size="9.5" fill="#29b6d4"
                 font-family="JetBrains Mono, monospace"
                 font-weight="700" letter-spacing="0.07em">SIGNAL DETECTED</text>
-
-              <!-- Connector line from tooltip to dot -->
               <line x1="248" y1="79" x2="248" y2="55" stroke="#29b6d4" stroke-width="1" opacity="0.4" stroke-dasharray="2,2"/>
-
-              <!-- Score badge — "87" in top right (matches Opportunity Radar score ring concept) -->
               <rect x="338" y="8" width="50" height="22" rx="4" fill="rgba(34,197,94,0.12)" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
-              <text x="363" y="23" text-anchor="middle" font-size="9" fill="#22c55e" font-family="JetBrains Mono, monospace" font-weight="700">▲ +12.4%</text>
-
-              <!-- Ticker label -->
+              <text x="363" y="23" text-anchor="middle" font-size="9" fill="#22c55e" font-family="JetBrains Mono, monospace" font-weight="700">+12.4%</text>
               <rect x="8" y="8" width="38" height="18" rx="3" fill="#1c2333" stroke="#30363d" stroke-width="1"/>
               <text x="27" y="21" text-anchor="middle" font-size="8.5" fill="#e6edf3" font-family="JetBrains Mono, monospace" font-weight="700">CRWD</text>
-
-              <!-- Signal type label bottom -->
-              <text x="8" y="290" font-size="8" fill="#484f58" font-family="JetBrains Mono, monospace" letter-spacing="0.05em">EMOTIONAL SELLOFF · SCORE 87 · STRONG</text>
-              <!-- Second legend -->
-              <line x1="8" y1="286" x2="8" y2="286"/>
-
-              <!-- Dashed line legend label -->
-              <line x1="8" y1="282" x2="22" y2="282" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
-              <text x="26" y="285" font-size="7.5" fill="#484f58" font-family="JetBrains Mono, monospace">Correlated asset (BTC)</text>
+              <text x="8" y="290" font-size="8" fill="#484f58" font-family="JetBrains Mono, monospace" letter-spacing="0.05em">SIGNAL SCORE 87 — STRONG</text>
             </svg>
           </div>
         </div>
@@ -1227,14 +726,14 @@
     <div class="container">
       <div class="section__header fade-in">
         <div class="section__eyebrow">Our Approach</div>
-        <h2 class="section__title">Three principles.<br>Two platforms. One vision.</h2>
+        <h2 class="section__title">Three principles. One vision.</h2>
       </div>
 
       <div class="pillars-grid">
         <div class="pillar fade-in">
           <div class="pillar__number">01</div>
           <h3 class="pillar__title">Catch Risk Early</h3>
-          <p class="pillar__body">Surface threats and market anomalies before they become costly. Our AI models are designed to identify patterns that precede adverse events — giving you time to act.</p>
+          <p class="pillar__body">Surface market anomalies before they become costly. Our AI models identify patterns that precede adverse events — giving you time to act.</p>
         </div>
         <div class="pillar fade-in">
           <div class="pillar__number">02</div>
@@ -1258,7 +757,8 @@
         <h2 class="contact-band__title">Interested in working together?</h2>
         <p class="contact-band__sub">Whether you're an investor, potential partner, or want early access to our platforms — we'd like to hear from you.</p>
 
-        <form class="cv-email-capture" id="cv-email-capture" action="https://formspree.io/f/xwvrgvyz" method="POST" novalidate>
+        <form class="cv-email-capture" id="cv-email-capture" action="https://formspree.io/f/xwvrgvyz" method="POST">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <div class="cv-email-capture__row">
             <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Your email address">
             <button type="submit">
@@ -1315,14 +815,14 @@
 </svg></span>
           <span class="nav__logo-text">Catch Ventures</span>
         </a>
-        <p class="footer__tagline">AI platforms for cybersecurity and financial intelligence. Catch risk early. Catch opportunity sooner.</p>
+        <p class="footer__tagline">AI platforms for financial intelligence. Catch risk early. Catch opportunity sooner.</p>
         <div class="footer__social" style="display:flex;gap:12px;margin-top:16px;">
-          <a href="https://www.linkedin.com/company/catchequities" target="_blank" rel="noopener noreferrer" aria-label="CatchEquities on LinkedIn" style="color:#8b949e;transition:color 0.2s;" onmouseover="this.style.color='#29b6d4'" onmouseout="this.style.color='#8b949e'">
+          <a href="https://www.linkedin.com/company/catchequities" target="_blank" rel="noopener noreferrer" aria-label="CatchEquities on LinkedIn" class="footer__social-link">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
           </a>
-          <a href="https://x.com/CatchEquities" target="_blank" rel="noopener noreferrer" aria-label="CatchEquities on X" style="color:#8b949e;transition:color 0.2s;" onmouseover="this.style.color='#29b6d4'" onmouseout="this.style.color='#8b949e'">
+          <a href="https://x.com/CatchEquities" target="_blank" rel="noopener noreferrer" aria-label="CatchEquities on X" class="footer__social-link">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
             </svg>
@@ -1333,14 +833,7 @@
       <div>
         <p class="footer__col-title">Product</p>
         <ul class="footer__links" role="list">
-          <li><a href="./catchequities.html">CatchEquities</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <p class="footer__col-title">Research</p>
-        <ul class="footer__links" role="list">
-          <li><a href="./catchsim.html">CatchSim</a></li>
+          <li><a href="https://www.catchequities.com" target="_blank" rel="noopener noreferrer">CatchEquities</a></li>
         </ul>
       </div>
 
@@ -1353,10 +846,9 @@
       </div>
 
       <div>
-        <p class="footer__col-title">Platforms</p>
+        <p class="footer__col-title">External</p>
         <ul class="footer__links" role="list">
           <li><a href="https://www.catchequities.com" target="_blank" rel="noopener noreferrer">catchequities.com</a></li>
-          <li><a href="https://catchsim.com" target="_blank" rel="noopener noreferrer">catchsim.com</a></li>
         </ul>
       </div>
     </div>
@@ -1368,7 +860,6 @@
 </footer>
 
 <script>
-  // Force dark mode always
   document.documentElement.setAttribute('data-theme', 'dark');
 
   (function(){
@@ -1390,7 +881,6 @@
 </script>
 
 <script>
-  // Email capture AJAX submission
   (function() {
     var form = document.getElementById('cv-email-capture');
     if (!form) return;
