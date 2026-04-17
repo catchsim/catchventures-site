@@ -33,8 +33,7 @@
   "description": "AI platforms for financial intelligence",
   "foundingDate": "2024",
   "sameAs": [
-    "https://x.com/catchventures",
-    "https://github.com/catchsim"
+    "https://x.com/catchventures"
   ]
 }
 </script>
@@ -90,6 +89,51 @@
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
     gap: var(--space-6);
     max-width: 900px;
+  }
+
+  /* Thesis grid */
+  .thesis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: var(--space-6);
+  }
+
+  .thesis-item {
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    position: relative;
+    transition: border-color var(--transition-interactive), transform var(--transition-interactive);
+  }
+
+  .thesis-item:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .thesis-item__marker {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    margin-bottom: var(--space-4);
+    box-shadow: 0 0 0 3px var(--color-primary-highlight);
+  }
+
+  .thesis-item__title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.01em;
+  }
+
+  .thesis-item__body {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.6;
   }
 
   /* Product card link override */
@@ -165,6 +209,37 @@
   .contact-form__submit {
     align-self: flex-start;
     margin-top: var(--space-2);
+  }
+
+  .contact-form__submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .contact-form__hint {
+    font-size: var(--text-xs);
+    color: var(--color-text-faint);
+    text-align: right;
+    margin-top: 2px;
+  }
+
+  .contact-form__hint.is-warning {
+    color: var(--color-warning);
+  }
+
+  .contact-form__status {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    min-height: 1.5em;
+  }
+
+  .contact-form__status.is-success {
+    color: var(--color-success);
+  }
+
+  .contact-form__status.is-error {
+    color: var(--color-error);
   }
 
   /* Footer social */
@@ -261,6 +336,7 @@
     </a>
     <ul class="nav__links">
       <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#thesis">Thesis</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -273,6 +349,7 @@
   <div class="container">
     <div class="nav__mobile-menu" id="mobile-menu">
       <a href="#portfolio">Portfolio</a>
+      <a href="#thesis">Thesis</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -297,9 +374,9 @@
     </svg>
   </div>
   <div class="container hero__content">
-    <div class="hero__eyebrow">AI Platforms for Financial Intelligence</div>
+    <div class="hero__eyebrow">High-Trust AI. Built in Public.</div>
     <h1 class="hero__title">Catch what matters.<br><span class="accent">Before others do.</span></h1>
-    <p class="hero__subtitle">AI platforms for investors who move before the headlines do.</p>
+    <p class="hero__subtitle">A ventures studio for high-trust AI. Starting with finance.</p>
     <div class="hero__cta">
       <a href="https://www.catchequities.com" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
         Explore CatchEquities
@@ -333,8 +410,8 @@
   <div class="container">
     <div class="section__header fade-in">
       <div class="section__eyebrow">Portfolio</div>
-      <h2 class="section__title">Our Products</h2>
-      <p class="section__body">One product today. More on the way.</p>
+      <h2 class="section__title">Portfolio</h2>
+      <p class="section__body">We build and back AI platforms where accuracy is the product. Starting with what we built ourselves.</p>
     </div>
     <div class="portfolio-grid fade-in">
       <a href="https://www.catchequities.com" class="product-card product-card--equities" target="_blank" rel="noopener noreferrer">
@@ -357,13 +434,46 @@
   </div>
 </section>
 
+<!-- ── Thesis ── -->
+<section class="section section--alt" id="thesis">
+  <div class="container">
+    <div class="section__header fade-in">
+      <div class="section__eyebrow">Thesis</div>
+      <h2 class="section__title">What we back.</h2>
+      <p class="section__body">AI platforms where accuracy can be verified, edge can be measured, and accountability is the product.</p>
+    </div>
+    <div class="thesis-grid fade-in">
+      <div class="thesis-item">
+        <div class="thesis-item__marker"></div>
+        <h3 class="thesis-item__title">High-Trust AI</h3>
+        <p class="thesis-item__body">Systems whose performance can be audited, not just trusted.</p>
+      </div>
+      <div class="thesis-item">
+        <div class="thesis-item__marker"></div>
+        <h3 class="thesis-item__title">Signal Detection</h3>
+        <p class="thesis-item__body">Tools for operators who can't afford to be late.</p>
+      </div>
+      <div class="thesis-item">
+        <div class="thesis-item__marker"></div>
+        <h3 class="thesis-item__title">High-Stakes Intelligence</h3>
+        <p class="thesis-item__body">Software for domains where being wrong is expensive.</p>
+      </div>
+      <div class="thesis-item">
+        <div class="thesis-item__marker"></div>
+        <h3 class="thesis-item__title">Financial Intelligence</h3>
+        <p class="thesis-item__body">Our current focus — and where we built our first product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── About ── -->
-<section class="section section--alt" id="about">
+<section class="section" id="about">
   <div class="container">
     <div class="section__header fade-in">
       <div class="section__eyebrow">About</div>
       <h2 class="section__title">Transparency as strategy.</h2>
-      <p class="section__body">Catch Ventures builds AI platforms for investors who care about accuracy — publicly tracked, not marketed.</p>
+      <p class="section__body">Catch Ventures is a studio that builds and backs AI platforms for domains where accuracy matters most — starting with finance.</p>
     </div>
     <div class="pillars-grid fade-in">
       <div class="pillar">
@@ -400,20 +510,22 @@
   <div class="container contact-band__inner">
     <h2 class="contact-band__title">Let's talk.</h2>
     <p class="contact-band__sub">Investors, partners, press — all welcome.</p>
-    <form class="contact-form" action="https://formspree.io/f/xwvrgvyz" method="POST">
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xwvrgvyz" method="POST" accept-charset="UTF-8">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="_subject" value="New Catch Ventures contact form submission">
       <div class="contact-form__field">
         <label class="contact-form__label" for="contact-name">Name</label>
-        <input class="contact-form__input" type="text" id="contact-name" name="name" required autocomplete="name">
+        <input class="contact-form__input" type="text" id="contact-name" name="name" required autocomplete="name" maxlength="100" minlength="2" pattern="[\p{L}\p{M}\p{Zs}'\-\.]{2,100}" title="Please enter a valid name">
       </div>
       <div class="contact-form__field">
         <label class="contact-form__label" for="contact-email">Email</label>
-        <input class="contact-form__input" type="email" id="contact-email" name="email" required autocomplete="email">
+        <input class="contact-form__input" type="email" id="contact-email" name="email" required autocomplete="email" maxlength="254">
       </div>
       <div class="contact-form__field">
         <label class="contact-form__label" for="contact-type">Inquiry Type</label>
-        <select class="contact-form__select" id="contact-type" name="type">
+        <select class="contact-form__select" id="contact-type" name="type" required>
           <option value="general">General</option>
+          <option value="founder">Founder / Startup</option>
           <option value="investor">Investor</option>
           <option value="partner">Partner</option>
           <option value="product">Product</option>
@@ -421,9 +533,11 @@
       </div>
       <div class="contact-form__field">
         <label class="contact-form__label" for="contact-message">Message</label>
-        <textarea class="contact-form__textarea" id="contact-message" name="message" required></textarea>
+        <textarea class="contact-form__textarea" id="contact-message" name="message" required maxlength="2000" minlength="10"></textarea>
+        <span class="contact-form__hint" id="message-hint">0 / 2000</span>
       </div>
-      <button type="submit" class="btn btn--primary contact-form__submit">Send Message</button>
+      <button type="submit" class="btn btn--primary contact-form__submit" id="contact-submit">Send Message</button>
+      <p class="contact-form__status" id="form-status" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -456,13 +570,9 @@
           </span>
           <span class="nav__logo-text">Catch Ventures</span>
         </a>
-        <p class="footer__tagline">AI platforms. Public accountability.</p>
         <div class="footer__social">
           <a href="https://x.com/catchventures" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="https://github.com/catchsim" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
           </a>
         </div>
       </div>
@@ -519,6 +629,74 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// Contact form: char counter, throttling, AJAX submit
+(() => {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  const msg = document.getElementById('contact-message');
+  const hint = document.getElementById('message-hint');
+  const submitBtn = document.getElementById('contact-submit');
+  const status = document.getElementById('form-status');
+  const SUBMIT_COOLDOWN_MS = 30000; // 30s between submits
+  const MAX_MSG = 2000;
+  let lastSubmit = 0;
+
+  // Character counter
+  msg.addEventListener('input', () => {
+    const len = msg.value.length;
+    hint.textContent = `${len} / ${MAX_MSG}`;
+    hint.classList.toggle('is-warning', len > MAX_MSG * 0.9);
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Client-side rate limit
+    const now = Date.now();
+    if (now - lastSubmit < SUBMIT_COOLDOWN_MS) {
+      const wait = Math.ceil((SUBMIT_COOLDOWN_MS - (now - lastSubmit)) / 1000);
+      status.textContent = `Please wait ${wait}s before sending another message.`;
+      status.className = 'contact-form__status is-error';
+      return;
+    }
+
+    // Honeypot check (defense in depth)
+    if (form._gotcha.value) {
+      status.textContent = 'Submission blocked.';
+      status.className = 'contact-form__status is-error';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    status.textContent = 'Sending…';
+    status.className = 'contact-form__status';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        lastSubmit = Date.now();
+        form.reset();
+        hint.textContent = `0 / ${MAX_MSG}`;
+        status.textContent = 'Message sent. We\'ll be in touch.';
+        status.className = 'contact-form__status is-success';
+      } else {
+        const data = await res.json().catch(() => ({}));
+        status.textContent = data.error || 'Something went wrong. Please try again later.';
+        status.className = 'contact-form__status is-error';
+      }
+    } catch {
+      status.textContent = 'Network error. Please try again.';
+      status.className = 'contact-form__status is-error';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+})();
 
 // Scroll-triggered fade-in (fallback for browsers without animation-timeline)
 if (!CSS.supports('animation-timeline', 'scroll()')) {
