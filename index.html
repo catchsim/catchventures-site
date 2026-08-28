@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Catch Ventures — AI Platforms for Financial Intelligence</title>
-<meta name="description" content="Catch Ventures builds AI platforms for financial intelligence — helping investors catch risk early and seize opportunity before others do.">
+<title>Catch Ventures — High-Trust AI for High-Stakes Domains</title>
+<meta name="description" content="Catch Ventures is a studio building high-trust AI for high-stakes domains — from financial markets to physical training. We build software that catches risk, gaps, and signal before others do.">
 <meta property="og:title" content="Catch Ventures — Catch What Matters First">
-<meta property="og:description" content="AI platforms for financial intelligence. Building high-trust software that helps investors identify risk early and seize opportunity sooner.">
+<meta property="og:description" content="A studio building high-trust AI for high-stakes domains — from financial markets to physical training. Software that catches risk, gaps, and signal before others do.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://catchventures.ca">
 <meta property="og:image" content="https://catchventures.ca/assets/logo-web.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Catch Ventures — Catch What Matters First">
-<meta name="twitter:description" content="AI platforms for financial intelligence.">
+<meta name="twitter:description" content="High-trust AI for high-stakes domains.">
 <meta name="twitter:image" content="https://catchventures.ca/assets/logo-web.jpg">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="./assets/favicon.ico" sizes="32x32">
@@ -30,7 +30,7 @@
   "@type": "Organization",
   "name": "Catch Ventures",
   "url": "https://catchventures.ca",
-  "description": "AI platforms for financial intelligence",
+  "description": "A studio building high-trust AI for high-stakes domains, from financial markets to physical training",
   "foundingDate": "2024",
   "sameAs": [
     "https://x.com/catchequities"
@@ -54,6 +54,8 @@
     --color-primary-hover: #1DA6C4;
     --color-primary-active: #178FA8;
     --color-primary-highlight: rgba(41, 182, 212, 0.1);
+    --color-lift: #CDFF3A;
+    --color-lift-highlight: rgba(205, 255, 58, 0.1);
     --color-success: #22C55E;
     --color-warning: #F59E0B;
     --color-error: #EF4444;
@@ -149,6 +151,21 @@
 
   .product-card:hover .product-card__link {
     gap: var(--space-3);
+  }
+
+  /* LiftCatch product-card accent — volt green (matches LiftCatch brand) */
+  .product-card--liftcatch .product-card__glow {
+    background: radial-gradient(circle, color-mix(in oklab, var(--color-lift) 15%, transparent), transparent 70%);
+  }
+
+  .product-card--liftcatch .product-card__badge,
+  .product-card--liftcatch .product-card__icon {
+    background: var(--color-lift-highlight);
+    color: var(--color-lift);
+  }
+
+  .product-card--liftcatch .product-card__link {
+    color: var(--color-lift);
   }
 
   /* Contact form */
@@ -397,11 +414,11 @@
   <div class="container hero__content">
     <div class="hero__eyebrow">High-Trust AI. Built in Public.</div>
     <h1 class="hero__title">Catch what matters.<br><span class="accent">Before others do.</span></h1>
-    <p class="hero__subtitle">A ventures studio for high-trust AI. Starting with finance.</p>
+    <p class="hero__subtitle">A ventures studio for high-trust AI. We build software that catches what others miss — from financial markets to physical training.</p>
     <div class="hero__cta">
-      <a href="https://www.catchequities.com" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
-        Explore CatchEquities
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+      <a href="#portfolio" class="btn btn--primary">
+        See the portfolio
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
       </a>
       <a href="#about" class="btn btn--ghost">Learn More</a>
     </div>
@@ -413,16 +430,16 @@
   <div class="ticker-track">
     <span class="ticker-item"><span class="dot"></span>Signal Detection</span>
     <span class="ticker-item"><span class="dot"></span>Risk Identification</span>
-    <span class="ticker-item"><span class="dot"></span>Market Intelligence</span>
+    <span class="ticker-item"><span class="dot"></span>Gap Detection</span>
     <span class="ticker-item"><span class="dot"></span>High-Trust Software</span>
-    <span class="ticker-item"><span class="dot"></span>Algorithmic Scanning</span>
-    <span class="ticker-item"><span class="dot"></span>Financial AI</span>
+    <span class="ticker-item"><span class="dot"></span>Market Intelligence</span>
+    <span class="ticker-item"><span class="dot"></span>Human Performance</span>
     <span class="ticker-item"><span class="dot"></span>Signal Detection</span>
     <span class="ticker-item"><span class="dot"></span>Risk Identification</span>
-    <span class="ticker-item"><span class="dot"></span>Market Intelligence</span>
+    <span class="ticker-item"><span class="dot"></span>Gap Detection</span>
     <span class="ticker-item"><span class="dot"></span>High-Trust Software</span>
-    <span class="ticker-item"><span class="dot"></span>Algorithmic Scanning</span>
-    <span class="ticker-item"><span class="dot"></span>Financial AI</span>
+    <span class="ticker-item"><span class="dot"></span>Market Intelligence</span>
+    <span class="ticker-item"><span class="dot"></span>Human Performance</span>
   </div>
 </div>
 
@@ -432,7 +449,7 @@
     <div class="section__header fade-in">
       <div class="section__eyebrow">Portfolio</div>
       <h2 class="section__title">Portfolio</h2>
-      <p class="section__body">We build and back AI platforms where accuracy is the product. Starting with what we built ourselves.</p>
+      <p class="section__body">We build and back AI platforms where accuracy is the product — across the domains where being wrong is expensive.</p>
     </div>
     <div class="portfolio-grid fade-in">
       <a href="https://www.catchequities.com" class="product-card product-card--equities" target="_blank" rel="noopener noreferrer">
@@ -448,6 +465,22 @@
         <p class="product-card__desc">AI signal detection for equities, crypto, and commodities. Every call graded publicly.</p>
         <span class="product-card__link">
           Visit CatchEquities
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+      </a>
+      <a href="https://liftcatch.com" class="product-card product-card--liftcatch" target="_blank" rel="noopener noreferrer">
+        <div class="product-card__glow"></div>
+        <div class="product-card__badge">
+          <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+          New Vertical
+        </div>
+        <div class="product-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
+        </div>
+        <h3 class="product-card__title">Lift<span>Catch</span></h3>
+        <p class="product-card__desc">AI strength coaching that catches the gaps — muscle imbalances and injury risk — before they set you back. Meet Lou, your injury-aware coach.</p>
+        <span class="product-card__link">
+          Visit LiftCatch
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
         </span>
       </a>
@@ -481,8 +514,8 @@
       </div>
       <div class="thesis-item">
         <div class="thesis-item__marker"></div>
-        <h3 class="thesis-item__title">Financial Intelligence</h3>
-        <p class="thesis-item__body">Our current focus — and where we built our first product.</p>
+        <h3 class="thesis-item__title">Across Domains</h3>
+        <p class="thesis-item__body">We started in finance with CatchEquities. The same edge now powers training with LiftCatch.</p>
       </div>
     </div>
   </div>
@@ -494,7 +527,7 @@
     <div class="section__header fade-in">
       <div class="section__eyebrow">About</div>
       <h2 class="section__title">Transparency as strategy.</h2>
-      <p class="section__body">Catch Ventures is a studio that builds and backs AI platforms for domains where accuracy matters most — starting with finance.</p>
+      <p class="section__body">Catch Ventures is a studio that builds and backs AI platforms for domains where accuracy matters most — from financial markets to physical training.</p>
     </div>
     <div class="pillars-grid fade-in">
       <div class="pillar">
@@ -614,9 +647,10 @@
         </div>
       </div>
       <div>
-        <div class="footer__col-title">Product</div>
+        <div class="footer__col-title">Products</div>
         <ul class="footer__links">
           <li><a href="https://www.catchequities.com" target="_blank" rel="noopener noreferrer">CatchEquities</a></li>
+          <li><a href="https://liftcatch.com" target="_blank" rel="noopener noreferrer">LiftCatch</a></li>
         </ul>
       </div>
       <div>
